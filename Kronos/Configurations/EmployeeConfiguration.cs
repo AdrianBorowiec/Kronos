@@ -7,11 +7,11 @@ using System.Web;
 
 namespace Kronos.Configurations
 {
-    public class UserConfiguration : EntityTypeConfiguration<User>
+    public class EmployeeConfiguration : EntityTypeConfiguration<Employee>
     {
-        public UserConfiguration()
+        public EmployeeConfiguration()
         {
-            ToTable("Users");
+            ToTable("Employees");
 
             Property(x => x.Id).IsRequired();
             Property(x => x.FirstName).IsRequired();
