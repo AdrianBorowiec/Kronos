@@ -17,8 +17,8 @@ namespace Kronos.DAL
         {
         }
 
-        public DbSet<Employee> Employees { get; set; }
-        public DbSet<RequisitionItem> RequisitionItems { get; set; }
+        public IDbSet<Employee> Employees { get; set; }
+        public IDbSet<RequisitionItem> RequisitionItems { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -31,8 +31,8 @@ namespace Kronos.DAL
             this.Configuration.LazyLoadingEnabled = true;
             //
 
-            modelBuilder.Configurations.Add(new EmployeeConfiguration());
-            modelBuilder.Configurations.Add(new RequisitionItemConfiguration());
+            //modelBuilder.Configurations.Add(new EmployeeConfiguration());
+            //modelBuilder.Configurations.Add(new RequisitionItemConfiguration());
         }
     }
 }

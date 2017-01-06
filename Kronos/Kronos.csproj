@@ -167,13 +167,17 @@
     <Compile Include="Configurations\EmployeeConfiguration.cs" />
     <Compile Include="Configurations\RequisitionItemConfiguration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ShoppingListController.cs" />
     <Compile Include="DAL\Db.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\CustomHtmlHelpers.cs" />
     <Compile Include="Infrastructure\ForeignKeyNamingConvention.cs" />
+    <Compile Include="Infrastructure\MyResourceProvider.cs" />
+    <Compile Include="Migrations\201701061411154_ListaZakupow.cs" />
+    <Compile Include="Migrations\201701061411154_ListaZakupow.Designer.cs">
+      <DependentUpon>201701061411154_ListaZakupow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Debt.cs" />
     <Compile Include="Models\Earnings.cs" />
@@ -182,8 +186,14 @@
     <Compile Include="Models\Reservation.cs" />
     <Compile Include="Models\Table.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\ResourcesValidation.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourcesValidation.resx</DependentUpon>
+    </Compile>
     <Compile Include="Validators\EmployeeValidator.cs" />
     <Compile Include="Validators\RequisitionItemValidator.cs" />
+    <Compile Include="Controllers\RequisitionItemsController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -272,6 +282,11 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\RequisitionItems\Create.cshtml" />
+    <Content Include="Views\RequisitionItems\Delete.cshtml" />
+    <Content Include="Views\RequisitionItems\Details.cshtml" />
+    <Content Include="Views\RequisitionItems\Edit.cshtml" />
+    <Content Include="Views\RequisitionItems\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -284,6 +299,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201701061411154_ListaZakupow.resx">
+      <DependentUpon>201701061411154_ListaZakupow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ResourcesValidation.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourcesValidation.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

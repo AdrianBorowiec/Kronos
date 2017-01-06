@@ -16,6 +16,7 @@ namespace Kronos.Configurations
             Property(x => x.Id).IsRequired();
             Property(x => x.Name).IsRequired();
             Property(x => x.CreateDate).IsRequired();
+            Property(x => x.RequisitionType).IsRequired();
         }
     }
 }

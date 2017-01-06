@@ -11,6 +11,8 @@
     @Scripts.Render("~/bundles/jqueryUI")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/knockout")
+
+    @using Kronos.Resources
 </head>
 <body>
     <div id="wrapper">
@@ -26,7 +28,7 @@
                     @Html.ActionLink("Strona Główna", "Index", "Home", new { @style = "color: #333333;" })
                 </li>
                 <li>
-                    @Html.ActionLink("Lista zakupów", "Index", "ShoppingList")
+                    @Html.ActionLink("Lista zakupów", "Index", "RequisitionItems")
                 </li>
             </ul>
         </div>

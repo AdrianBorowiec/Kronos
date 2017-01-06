@@ -11,9 +11,9 @@ namespace Kronos.Validators
     {
         public RequisitionItemValidator()
         {
-            RuleFor(x => x.Id).NotEmpty();
-            RuleFor(x => x.Name).NotEmpty().WithMessage("Pole nie może być puste!");
-            RuleFor(x => x.CreateDate).NotEmpty().WithMessage("Pole nie może być puste!");
+            RuleFor(x => x.Name).NotEmpty();
+            RuleFor(x => x.Quantity).NotEmpty().GreaterThanOrEqualTo(1);
+            RuleFor(x => x.RequisitionType).NotEmpty();
         }
     }
 }

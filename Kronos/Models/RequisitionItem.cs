@@ -22,21 +22,25 @@ namespace Kronos.Models
         /// <summary>
         /// Nazwa produktu.
         /// </summary>
+        [Display(Name = "Nazwa produktu")]
         public string Name { get; set; }
 
         /// <summary>
         /// Ilość.
         /// </summary>
+        [Display(Name = "Ilość")]
         public int? Quantity { get; set; }
 
         /// <summary>
         /// Data utworzenia zapotrzebowania.
         /// </summary>
+        [Display(Name = "Data utworzenia")]
         public DateTime? CreateDate { get; set; }
 
         /// <summary>
         /// Typ produktu.
         /// </summary>
+        [Display(Name = "Typ produktu")]
         public RequisitionType? RequisitionType { get; set; }
     }
 
