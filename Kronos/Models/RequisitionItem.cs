@@ -17,6 +17,7 @@ namespace Kronos.Models
         /// <summary>
         /// Identyfikator.
         /// </summary>
+        [Display(Name = "Identyfikator")]
         public int? Id { get; set; }
 
         /// <summary>

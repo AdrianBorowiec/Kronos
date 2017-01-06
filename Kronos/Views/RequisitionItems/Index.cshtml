@@ -1,13 +1,10 @@
 ﻿@model IEnumerable<Kronos.Models.RequisitionItem>
 
-@{
-    ViewBag.Title = "Index";
-}
 
-<h2>Lista zakupów</h2>
+<h2><b>Lista zakupów</b></h2>
 
 <p>
-    @Html.ActionLink("Dodaj do listy", "Create", null, new { @class = "btn btn-info" })
+    @Html.ActionLink("Dodaj do listy", "Create", null, new { @class = "btn btn-primary" })
 </p>
 <table class="table">
     <tr>
@@ -41,9 +38,9 @@
             @Html.DisplayFor(modelItem => item.RequisitionType)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-warning" }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-info" }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
         </td>
     </tr>
 }

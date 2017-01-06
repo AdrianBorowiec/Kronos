@@ -21,7 +21,7 @@ namespace Kronos
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             FluentValidationModelValidatorProvider.Configure();
-            //ValidatorOptions.ResourceProviderType = typeof(MyResourceProvider);
+            ValidatorOptions.ResourceProviderType = typeof(MyResourceProvider);
         }
     }
 }

@@ -1,0 +1,7 @@
+- EntityFramework
+	- konfiguracja
+
+- FluentValidation
+	- konfiguracja
+	- customowe komunikaty
+	
