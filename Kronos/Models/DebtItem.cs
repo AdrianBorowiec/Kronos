@@ -9,10 +9,10 @@ using System.Web;
 namespace Kronos.Models
 {
     /// <summary>
-    /// Dług.
+    /// Pozycja listy długów.
     /// </summary>
-    [Validator(typeof(DebtValidator))]
-    public class Debt
+    [Validator(typeof(DebtItemValidator))]
+    public class DebtItem
     {
         /// <summary>
         /// Identyfikator.
@@ -21,26 +21,26 @@ namespace Kronos.Models
         public int? Id { get; set; }
 
         /// <summary>
-        /// Dłużnik.
+        /// Nazwa zakupionego produktu.
         /// </summary>
-        [Display(Name = "Dłużnik")]
-        public string Debtor { get; set; }
+        [Display(Name = "Nazwa zakupionego produktu")]
+        public string ProductName { get; set; }
 
         /// <summary>
-        /// Wartość długu.
+        /// Wartość produktu.
         /// </summary>
-        [Display(Name = "Wartość długu")]
-        public double? TotalAmount { get; set; }
+        [Display(Name = "Wartość produktu")]
+        public double? Value { get; set; }
 
         /// <summary>
-        /// Pracownik wpisujący dług.
+        /// Data utworzenia długu.
         /// </summary>
-        //[Display(Name = "Pracownik wpisujący dług")]
-        //public virtual Employee Employee { get; set; }
+        [Display(Name = "Data utworzenia długu")]
+        public DateTime? Date { get; set; }
 
         /// <summary>
-        /// Pozycje listy długów.
+        /// Dług.
         /// </summary>
-        public virtual ICollection<DebtItem> DebtItems { get; set; }       
+        public virtual Debt Debt { get; set; }
     }
 }

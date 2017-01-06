@@ -164,8 +164,12 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Configurations\DebtConfiguration.cs" />
+    <Compile Include="Configurations\DebtItemConfiguration.cs" />
     <Compile Include="Configurations\EmployeeConfiguration.cs" />
     <Compile Include="Configurations\RequisitionItemConfiguration.cs" />
+    <Compile Include="Controllers\DebtController.cs" />
+    <Compile Include="Controllers\DebtItemsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DAL\Db.cs" />
     <Compile Include="Global.asax.cs">
@@ -178,8 +182,13 @@
     <Compile Include="Migrations\201701061411154_ListaZakupow.Designer.cs">
       <DependentUpon>201701061411154_ListaZakupow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701061856003_ListaDlugow.cs" />
+    <Compile Include="Migrations\201701061856003_ListaDlugow.Designer.cs">
+      <DependentUpon>201701061856003_ListaDlugow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Debt.cs" />
+    <Compile Include="Models\DebtItem.cs" />
     <Compile Include="Models\Earnings.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\RequisitionItem.cs" />
@@ -191,6 +200,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResourcesValidation.resx</DependentUpon>
     </Compile>
+    <Compile Include="Validators\DebtItemValidator.cs" />
+    <Compile Include="Validators\DebtValidator.cs" />
     <Compile Include="Validators\EmployeeValidator.cs" />
     <Compile Include="Validators\RequisitionItemValidator.cs" />
     <Compile Include="Controllers\RequisitionItemsController.cs" />
@@ -283,15 +294,16 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\RequisitionItems\Create.cshtml" />
-    <Content Include="Views\RequisitionItems\Delete.cshtml" />
     <Content Include="Views\RequisitionItems\Details.cshtml" />
     <Content Include="Views\RequisitionItems\Edit.cshtml" />
     <Content Include="Views\RequisitionItems\Index.cshtml" />
+    <Content Include="Views\Debt\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\" />
     <Folder Include="ViewModels\" />
+    <Folder Include="Views\DebtItems\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -303,6 +315,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201701061411154_ListaZakupow.resx">
       <DependentUpon>201701061411154_ListaZakupow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701061856003_ListaDlugow.resx">
+      <DependentUpon>201701061856003_ListaDlugow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ResourcesValidation.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

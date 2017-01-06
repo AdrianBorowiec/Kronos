@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<Kronos.Models.RequisitionItem>
 
 
-<h2><b>Lista zakupów</b></h2>
+<h1><b>Lista zakupów</b></h1>
 
 <p>
-    @Html.ActionLink("Dodaj do listy", "Create", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Dodaj do listy", "Create", null, new { @class = "btn btn-primary btn-margin" })
 </p>
 <table class="table">
     <tr>
@@ -19,30 +19,30 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.RequisitionType)
-        </th>
-        <th></th>
+        </th>        
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Quantity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreateDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RequisitionType)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-warning" }) |
-            @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-info" }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
-        </td>
-    </tr>
-}
-
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequisitionType)
+            </td>
+            <td>
+                @Html.ActionLink("Edytuj", "Edit", new { id = item.Id }, new { @class = "btn btn-warning" }) |
+                @Html.ActionLink("Szczegóły", "Details", new { id = item.Id }, new { @class = "btn btn-info" }) |
+                @Html.ActionLink("Usuń", "Delete", new { id = item.Id }, new { @class = "btn btn-danger delete-link" })
+            </td>
+        </tr>
+    }
 </table>
+
