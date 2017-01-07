@@ -1,0 +1,45 @@
+﻿@model Kronos.Models.Debt
+@{ Kronos.Models.DebtItem dummy = null; }
+
+<h1><b>Szczegóły</b></h1>
+
+<div>
+    <hr />
+
+    <h2><b>@Html.DisplayFor(model => model.Debtor)</b></h2>
+    <br />
+    
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(dummyParam => dummy.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(dummyParam => dummy.Value)
+            </th>
+            <th>
+                @Html.DisplayNameFor(dummyParam => dummy.Date)
+            </th>
+        </tr>
+
+        @foreach (var item in Model.DebtItems)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Value) zł
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+<hr />
+<p>
+    @Html.ActionLink("Powrót do listy", "Index", null, new { @class = "btn btn-success" })
+</p>

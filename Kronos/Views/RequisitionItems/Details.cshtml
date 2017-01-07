@@ -1,8 +1,5 @@
 ﻿@model Kronos.Models.RequisitionItem
 
-@{
-    ViewBag.Title = "Details";
-}
 
 <h1><b>Szczegóły</b></h1>
 
@@ -43,6 +40,8 @@
 
     </dl>
 </div>
+
+<hr />
 <p>
     @Html.ActionLink("Edytuj", "Edit", new { id = Model.Id }, new { @class = "btn btn-warning" })
     @Html.ActionLink("Powrót do listy", "Index", null, new { @class = "btn btn-success" })

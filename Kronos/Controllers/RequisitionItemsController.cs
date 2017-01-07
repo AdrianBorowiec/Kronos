@@ -15,13 +15,11 @@ namespace Kronos.Controllers
     {
         private Db db = new Db();
 
-        // GET: RequisitionItems
         public ActionResult Index()
         {
             return View(db.RequisitionItems.ToList());
         }
 
-        // GET: RequisitionItems/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,18 +34,11 @@ namespace Kronos.Controllers
             return View(requisitionItem);
         }
 
-        // GET: RequisitionItems/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: RequisitionItems/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        // [Bind(Include = "Id,Name,Quantity,RequisitionType")] 
         public ActionResult Create(RequisitionItem requisitionItem)
         {
             requisitionItem.CreateDate = DateTime.Now;
@@ -62,7 +53,6 @@ namespace Kronos.Controllers
             return View(requisitionItem);
         }
 
-        // GET: RequisitionItems/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -77,9 +67,6 @@ namespace Kronos.Controllers
             return View(requisitionItem);
         }
 
-        // POST: RequisitionItems/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name,Quantity,CreateDate,RequisitionType")] RequisitionItem requisitionItem)

@@ -1,5 +1,4 @@
 ﻿@model Kronos.Models.RequisitionItem
-@using Kronos.Resources
 
 
 <h1><b>Dodaj do listy zakupów</b></h1>
@@ -44,10 +43,7 @@
     </div>
 }
 
+<hr />
 <div>
     @Html.ActionLink("Powrót do listy", "Index", null, new { @class = "btn btn-success" })
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

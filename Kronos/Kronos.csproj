@@ -178,6 +178,7 @@
     <Compile Include="Infrastructure\CustomHtmlHelpers.cs" />
     <Compile Include="Infrastructure\ForeignKeyNamingConvention.cs" />
     <Compile Include="Infrastructure\MyResourceProvider.cs" />
+    <Compile Include="Infrastructure\UniqueValidator.cs" />
     <Compile Include="Migrations\201701061411154_ListaZakupow.cs" />
     <Compile Include="Migrations\201701061411154_ListaZakupow.Designer.cs">
       <DependentUpon>201701061411154_ListaZakupow.cs</DependentUpon>
@@ -298,6 +299,9 @@
     <Content Include="Views\RequisitionItems\Edit.cshtml" />
     <Content Include="Views\RequisitionItems\Index.cshtml" />
     <Content Include="Views\Debt\Index.cshtml" />
+    <Content Include="Views\Debt\Create.cshtml" />
+    <Content Include="Views\Debt\Edit.cshtml" />
+    <Content Include="Views\Debt\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
