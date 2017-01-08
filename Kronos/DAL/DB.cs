@@ -16,10 +16,11 @@ namespace Kronos.DAL
             : base("ConnectionString")
         {
         }
-
-        public DbSet<RequisitionItem> RequisitionItems { get; set; }
+        
         public DbSet<Debt> Debts { get; set; }
         public DbSet<DebtItem> DebtItems { get; set; }
+        public DbSet<Task> Tasks { get; set; }
+        public DbSet<RequisitionItem> RequisitionItems { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -31,10 +32,11 @@ namespace Kronos.DAL
             modelBuilder.Conventions.AddBefore<ForeignKeyIndexConvention>(new ForeignKeyNamingConvention());
             this.Configuration.LazyLoadingEnabled = true;
             //
-
-            modelBuilder.Configurations.Add(new RequisitionItemConfiguration());
+            
             modelBuilder.Configurations.Add(new DebtConfiguration());
             modelBuilder.Configurations.Add(new DebtItemConfiguration());
+            modelBuilder.Configurations.Add(new TaskConfiguration());
+            modelBuilder.Configurations.Add(new RequisitionItemConfiguration());
         }
     }
 }
