@@ -1,5 +1,6 @@
 ﻿using Kronos.DAL;
 using Kronos.Models;
+using Kronos.Validators;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -18,7 +19,7 @@ namespace Kronos.Controllers
         {
             foreach (var item in db.Debts.ToList())
             {
-                item.TotalAmount = item.DebtItems.Sum(x => x.Value);
+                item.TotalAmount = item.DebtItems.Sum(x => x.Value * x.Quantity);
             }
 
             db.SaveChanges();
@@ -35,7 +36,10 @@ namespace Kronos.Controllers
         [HttpPost]
         public ActionResult Create(Debt debt)
         {
-            if (ModelState.IsValid)
+            var validator = new DebtValidator();
+            var results = validator.Validate(debt);
+
+            if (results.IsValid)
             {
                 db.Debts.Add(debt);
                 db.SaveChanges();
@@ -114,6 +118,15 @@ namespace Kronos.Controllers
             {
                 return Content("false");
             }
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

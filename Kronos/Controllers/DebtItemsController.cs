@@ -1,9 +1,11 @@
 ﻿using Kronos.DAL;
 using Kronos.Models;
+using Kronos.Validators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -13,9 +15,53 @@ namespace Kronos.Controllers
     {
         private Db db = new Db();
 
-        public ActionResult Index()
+        public ActionResult Index(int? debtId)
         {
-            return View(db.Debts.ToList());
+            if (debtId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            ViewBag.DebtId = debtId;
+            ViewBag.Debtor = db.Debts.FirstOrDefault(x => x.Id == debtId).Debtor;
+            var debtItems = db.DebtItems.Where(x => x.Debt.Id == debtId).ToList();
+
+            foreach (var item in debtItems)
+            {
+                item.TotalValue = item.Quantity * item.Value;
+            }
+
+            return View(debtItems);
+        }
+
+        [HttpGet]
+        public ActionResult Create(int? debtId)
+        {
+            ViewBag.DebtId = debtId;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(DebtItem debtItem)
+        {
+            debtItem.Date = DateTime.Now;
+
+            var urlString = Request.UrlReferrer.Query;
+            var debtId = Int32.Parse(urlString.Substring(Math.Max(0, urlString.Length - 1)));
+
+            var validator = new DebtItemValidator(debtId);
+            var results = validator.Validate(debtItem);
+
+            if (results.IsValid)
+            {
+                debtItem.Debt = db.Debts.FirstOrDefault(x => x.Id == debtId);
+                db.DebtItems.Add(debtItem);
+                db.SaveChanges();
+                return RedirectToAction("Index", new { debtId = debtId });
+            }
+
+            //return View(debtItem);
+            return RedirectToAction("Create", new { debtId = debtId });
         }
 
         [HttpPost]
@@ -43,6 +89,15 @@ namespace Kronos.Controllers
             {
                 return Content("false");
             }
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

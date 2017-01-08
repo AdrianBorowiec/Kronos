@@ -8,6 +8,8 @@ using System.Web.Routing;
 using FluentValidation;
 using FluentValidation.Mvc;
 using Kronos.Infrastructure;
+using System.Globalization;
+using System.Threading;
 
 namespace Kronos
 {
@@ -20,8 +22,12 @@ namespace Kronos
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            FluentValidationModelValidatorProvider.Configure();
+            FluentValidationModelValidatorProvider.Configure();            
             ValidatorOptions.ResourceProviderType = typeof(MyResourceProvider);
+
+            var culture = CultureInfo.GetCultureInfo("pl-PL");
+            Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
         }
     }
 }

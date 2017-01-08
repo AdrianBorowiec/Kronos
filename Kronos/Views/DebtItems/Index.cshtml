@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Kronos.Models.DebtItem>
+
+<h1><b>Szczegóły</b></h1>
+
+<div>
+    <p>
+        @Html.ActionLink("Dodaj do szczegółowej listy", "Create", new { debtId = ViewBag.DebtId }, new { @class = "btn btn-primary btn-margin" })
+    </p>
+    <hr />
+
+    <h2><b>@ViewBag.Debtor</b></h2>
+    <br />
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Value)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalValue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Value) zł
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalValue) zł
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.ActionLink(" ", "AddItem", new { id = item.Id }, new { @class = "glyphicon glyphicon-plus btn btn-success" }) |
+                    @Html.ActionLink(" ", "DeleteItem", new { id = item.Id }, new { @class = "glyphicon glyphicon-minus btn btn-warning" }) |
+                    @Html.ActionLink("Usuń calość", "Delete", new { id = item.Id }, new { @class = "btn btn-danger delete-link" })
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+<hr />
+<p>
+    @Html.ActionLink("Powrót do listy dłużników", "Index", "Debt", null, new { @class = "btn btn-success" })
+</p>

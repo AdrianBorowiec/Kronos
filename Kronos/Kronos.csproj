@@ -187,6 +187,10 @@
     <Compile Include="Migrations\201701061856003_ListaDlugow.Designer.cs">
       <DependentUpon>201701061856003_ListaDlugow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701071654364_DodanieIlosciZakupionychProduktow.cs" />
+    <Compile Include="Migrations\201701071654364_DodanieIlosciZakupionychProduktow.Designer.cs">
+      <DependentUpon>201701071654364_DodanieIlosciZakupionychProduktow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Debt.cs" />
     <Compile Include="Models\DebtItem.cs" />
@@ -301,13 +305,13 @@
     <Content Include="Views\Debt\Index.cshtml" />
     <Content Include="Views\Debt\Create.cshtml" />
     <Content Include="Views\Debt\Edit.cshtml" />
-    <Content Include="Views\Debt\Details.cshtml" />
+    <Content Include="Views\DebtItems\Index.cshtml" />
+    <Content Include="Views\DebtItems\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\" />
     <Folder Include="ViewModels\" />
-    <Folder Include="Views\DebtItems\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -322,6 +326,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701061856003_ListaDlugow.resx">
       <DependentUpon>201701061856003_ListaDlugow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701071654364_DodanieIlosciZakupionychProduktow.resx">
+      <DependentUpon>201701071654364_DodanieIlosciZakupionychProduktow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ResourcesValidation.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -369,4 +376,20 @@
   </Target>
   <Target Name="AfterBuild">
   </Target> -->
+  
+  <Target Name="AfterPackage" AfterTargets="CopyAllFilesToSingleFolderForPackage" />
+
+<ItemGroup>
+    <FluentValidationExcludedCultures Include="cs;da;de;es;fa;fi;fr;it;ko;mk;nl;pt;ru;sv;tr;zh-CN">
+        <InProject>false</InProject>
+    </FluentValidationExcludedCultures>
+</ItemGroup>
+
+<Target Name="RemoveTranslationsAfterBuild" AfterTargets="AfterBuild">
+    <RemoveDir Directories="@(FluentValidationExcludedCultures->'$(OutputPath)%(Filename)')" />
+</Target>
+
+<Target Name="RemoveTranslationsAfterPackage" AfterTargets="AfterPackage">
+    <RemoveDir Directories="@(FluentValidationExcludedCultures->'$(_PackageTempDir)\$(OutputPath)%(Filename)')" />
+</Target>
 </Project>

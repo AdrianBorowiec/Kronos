@@ -9,9 +9,9 @@
 - stan końcowy z konkretnego dnia
     - utarg
     - godziny pracy poszczególnych pracowników
-- lista zakupów
-    - produkty spożywcze
-    - zapotrzebowania (inne braki jak szklanki, uszkodzenia infrastruktury itp.)
++ lista zakupów
+    + produkty spożywcze
+    + zapotrzebowania (inne braki jak szklanki, uszkodzenia infrastruktury itp.)
 - spis niezrealizowanych rachunków
     - lista nieuregulowanych długów konkretnych osób z poszczególnych dni
 - lista obowiązków pracowników

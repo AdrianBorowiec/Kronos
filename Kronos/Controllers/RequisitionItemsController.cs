@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Kronos.DAL;
 using Kronos.Models;
+using Kronos.Validators;
 
 namespace Kronos.Controllers
 {
@@ -39,11 +40,14 @@ namespace Kronos.Controllers
             return View();
         }
 
+        [HttpPost]
         public ActionResult Create(RequisitionItem requisitionItem)
         {
             requisitionItem.CreateDate = DateTime.Now;
+            var validator = new RequisitionItemValidator();
+            var result = validator.Validate(requisitionItem);
 
-            if (ModelState.IsValid)
+            if (result.IsValid)
             {
                 db.RequisitionItems.Add(requisitionItem);
                 db.SaveChanges();

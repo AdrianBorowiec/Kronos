@@ -3,6 +3,7 @@ using Kronos.Validators;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -31,6 +32,19 @@ namespace Kronos.Models
         /// </summary>
         [Display(Name = "Wartość produktu")]
         public double? Value { get; set; }
+
+        /// <summary>
+        /// Zakupiona ilość.
+        /// </summary>
+        [Display(Name = "Zakupiona ilość")]
+        public int? Quantity { get; set; }
+
+        /// <summary>
+        /// Suma wartości zakupionych produktów.
+        /// </summary>
+        [NotMapped]
+        [Display(Name = "Suma")]
+        public double? TotalValue { get; set; }
 
         /// <summary>
         /// Data utworzenia długu.

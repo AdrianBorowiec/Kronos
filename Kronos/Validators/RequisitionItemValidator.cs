@@ -16,6 +16,8 @@ namespace Kronos.Validators
 
         public RequisitionItemValidator()
         {
+            _requisitionItem = db.RequisitionItems.ToList();
+
             RuleFor(x => x.Name).NotEmpty();
             RuleFor(x => x.Quantity).NotEmpty().GreaterThanOrEqualTo(1);
             RuleFor(x => x.RequisitionType).NotEmpty();
