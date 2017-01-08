@@ -30,7 +30,8 @@ namespace Kronos.Models
         /// Wartość długu.
         /// </summary>
         [Display(Name = "Wartość długu")]
-        public double? TotalAmount { get; set; }
+        [DataType(DataType.Currency)]
+        public decimal? TotalAmount { get; set; }
 
         /// <summary>
         /// Pracownik wpisujący dług.

@@ -12,7 +12,7 @@
 + lista zakupów
     + produkty spożywcze
     + zapotrzebowania (inne braki jak szklanki, uszkodzenia infrastruktury itp.)
-- spis niezrealizowanych rachunków
-    - lista nieuregulowanych długów konkretnych osób z poszczególnych dni
++ spis niezrealizowanych rachunków
+    + lista nieuregulowanych długów konkretnych osób z poszczególnych dni
 - lista obowiązków pracowników
     - co i kiedy trzeba zrobić, kto ma się tym zająć

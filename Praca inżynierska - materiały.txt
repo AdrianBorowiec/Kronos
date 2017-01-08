@@ -1,7 +1,15 @@
+Używane technologie:
 - EntityFramework
 	- konfiguracja
-
 - FluentValidation
 	- konfiguracja
 	- customowe komunikaty
+- jQuery
 	
+
+Napotkane problemy:
+- używanie znaku ',' w liczbach zmienno przecinkowych
+	
+	
+TODO:
+- DebtItem.Value - nie działa decimal - gdy wpisuje 12.50 wartosc przekazywana do kontrolera jest nullem, gdy wpisuje 12,50 wyskakuje blad walidacji (12,50 nie jest liczba)

@@ -3,6 +3,7 @@ using Kronos.Models;
 using Kronos.Validators;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -47,7 +48,7 @@ namespace Kronos.Controllers
             debtItem.Date = DateTime.Now;
 
             var urlString = Request.UrlReferrer.Query;
-            var debtId = Int32.Parse(urlString.Substring(Math.Max(0, urlString.Length - 1)));
+            var debtId = Int32.Parse(urlString.Substring(urlString.LastIndexOf('=') + 1));
 
             var validator = new DebtItemValidator(debtId);
             var results = validator.Validate(debtItem);
@@ -89,6 +90,35 @@ namespace Kronos.Controllers
             {
                 return Content("false");
             }
+        }
+
+        public ActionResult AddItem(DebtItem model)
+        {
+            var urlString = Request.UrlReferrer.Query;
+            var debtId = Int32.Parse(urlString.Substring(urlString.LastIndexOf('=') + 1));
+
+            model.Quantity++;
+            db.Entry(model).State = EntityState.Modified;
+            db.SaveChanges();            
+
+            return RedirectToAction("Index", new { debtId = debtId });
+        }
+
+        public ActionResult DeleteItem(DebtItem model)
+        {
+            var urlString = Request.UrlReferrer.Query;
+            var debtId = Int32.Parse(urlString.Substring(urlString.LastIndexOf('=') + 1));
+
+            if (model.Quantity <= 0)
+            {
+                return RedirectToAction("Index", new { debtId = debtId });
+            }
+
+            model.Quantity--;          
+            db.Entry(model).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return RedirectToAction("Index", new { debtId = debtId });
         }
 
         protected override void Dispose(bool disposing)

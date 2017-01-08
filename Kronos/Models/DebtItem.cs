@@ -12,7 +12,7 @@ namespace Kronos.Models
     /// <summary>
     /// Pozycja listy długów.
     /// </summary>
-    [Validator(typeof(DebtItemValidator))]
+    //[Validator(typeof(DebtItemValidator))]
     public class DebtItem
     {
         /// <summary>
@@ -31,7 +31,8 @@ namespace Kronos.Models
         /// Wartość produktu.
         /// </summary>
         [Display(Name = "Wartość produktu")]
-        public double? Value { get; set; }
+        [DataType(DataType.Currency)]
+        public decimal? Value { get; set; }
 
         /// <summary>
         /// Zakupiona ilość.
@@ -44,7 +45,8 @@ namespace Kronos.Models
         /// </summary>
         [NotMapped]
         [Display(Name = "Suma")]
-        public double? TotalValue { get; set; }
+        [DataType(DataType.Currency)]
+        public decimal? TotalValue { get; set; }
 
         /// <summary>
         /// Data utworzenia długu.

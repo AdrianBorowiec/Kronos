@@ -17,7 +17,7 @@ namespace Kronos.Validators
         public DebtItemValidator()
         {
             RuleFor(x => x.ProductName).NotEmpty();
-            RuleFor(x => x.Value).NotEmpty().GreaterThanOrEqualTo(0.01);
+            RuleFor(x => x.Value).NotEmpty().GreaterThanOrEqualTo(0.01M);
             RuleFor(x => x.Date).NotEmpty();
             RuleFor(x => x.Quantity).NotEmpty().GreaterThanOrEqualTo(1);
         }
@@ -27,7 +27,7 @@ namespace Kronos.Validators
             _debtItems = db.DebtItems.Where(x => x.Debt.Id == debtId);
 
             RuleFor(x => x.ProductName).NotEmpty();
-            RuleFor(x => x.Value).NotEmpty().GreaterThanOrEqualTo(0.01);
+            RuleFor(x => x.Value).NotEmpty().GreaterThanOrEqualTo(0.01M);
             RuleFor(x => x.Date).NotEmpty();
             RuleFor(x => x.Quantity).NotEmpty().GreaterThanOrEqualTo(1);
             RuleFor(x => x.ProductName).SetValidator(new UniqueValidator<DebtItem>(_debtItems))

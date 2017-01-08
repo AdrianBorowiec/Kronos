@@ -22,12 +22,13 @@ namespace Kronos
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("pl-PL");
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("pl-PL");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("pl-PL");
+
+            ModelBinders.Binders.Add(typeof(decimal), new DecimalModelBinder());
             FluentValidationModelValidatorProvider.Configure();            
             ValidatorOptions.ResourceProviderType = typeof(MyResourceProvider);
-
-            var culture = CultureInfo.GetCultureInfo("pl-PL");
-            Thread.CurrentThread.CurrentCulture = culture;
-            Thread.CurrentThread.CurrentUICulture = culture;
         }
     }
 }

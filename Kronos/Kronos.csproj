@@ -176,6 +176,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\CustomHtmlHelpers.cs" />
+    <Compile Include="Infrastructure\DecimalModelBinder.cs" />
     <Compile Include="Infrastructure\ForeignKeyNamingConvention.cs" />
     <Compile Include="Infrastructure\MyResourceProvider.cs" />
     <Compile Include="Infrastructure\UniqueValidator.cs" />
@@ -190,6 +191,10 @@
     <Compile Include="Migrations\201701071654364_DodanieIlosciZakupionychProduktow.cs" />
     <Compile Include="Migrations\201701071654364_DodanieIlosciZakupionychProduktow.Designer.cs">
       <DependentUpon>201701071654364_DodanieIlosciZakupionychProduktow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701081507038_Decimale.cs" />
+    <Compile Include="Migrations\201701081507038_Decimale.Designer.cs">
+      <DependentUpon>201701081507038_Decimale.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Debt.cs" />
@@ -330,6 +335,9 @@
     <EmbeddedResource Include="Migrations\201701071654364_DodanieIlosciZakupionychProduktow.resx">
       <DependentUpon>201701071654364_DodanieIlosciZakupionychProduktow.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701081507038_Decimale.resx">
+      <DependentUpon>201701081507038_Decimale.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\ResourcesValidation.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourcesValidation.Designer.cs</LastGenOutput>
@@ -376,20 +384,16 @@
   </Target>
   <Target Name="AfterBuild">
   </Target> -->
-  
   <Target Name="AfterPackage" AfterTargets="CopyAllFilesToSingleFolderForPackage" />
-
-<ItemGroup>
+  <ItemGroup>
     <FluentValidationExcludedCultures Include="cs;da;de;es;fa;fi;fr;it;ko;mk;nl;pt;ru;sv;tr;zh-CN">
-        <InProject>false</InProject>
+      <InProject>false</InProject>
     </FluentValidationExcludedCultures>
-</ItemGroup>
-
-<Target Name="RemoveTranslationsAfterBuild" AfterTargets="AfterBuild">
+  </ItemGroup>
+  <Target Name="RemoveTranslationsAfterBuild" AfterTargets="AfterBuild">
     <RemoveDir Directories="@(FluentValidationExcludedCultures->'$(OutputPath)%(Filename)')" />
-</Target>
-
-<Target Name="RemoveTranslationsAfterPackage" AfterTargets="AfterPackage">
+  </Target>
+  <Target Name="RemoveTranslationsAfterPackage" AfterTargets="AfterPackage">
     <RemoveDir Directories="@(FluentValidationExcludedCultures->'$(_PackageTempDir)\$(OutputPath)%(Filename)')" />
-</Target>
+  </Target>
 </Project>

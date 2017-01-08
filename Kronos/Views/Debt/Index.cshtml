@@ -23,11 +23,11 @@
                 @Html.DisplayFor(modelItem => item.Debtor)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TotalAmount) zł
+                @Html.DisplayFor(modelItem => item.TotalAmount)
             </td>
             <td>
                 @Html.ActionLink("Edytuj", "Edit", new { id = item.Id }, new { @class = "btn btn-warning" }) |
-                @Html.ActionLink("Pokaż poszczególne pozycje", "Index", "DebtItems", new { debtId = item.Id }, new { @class = "btn btn-info" }) |
+                @Html.ActionLink("Pokaż szczegółową listę długów", "Index", "DebtItems", new { debtId = item.Id }, new { @class = "btn btn-info" }) |
                 @Html.ActionLink("Usuń całość", "Delete", new { id = item.Id }, new { @class = "btn btn-danger delete-link" })
             </td>
         </tr>
