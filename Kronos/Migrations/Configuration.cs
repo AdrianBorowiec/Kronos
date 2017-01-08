@@ -16,13 +16,13 @@ namespace Kronos.Migrations
 
         protected override void Seed(DAL.Db ctx)
         {
-            var employees = new List<Employee>
-            {
-                new Employee { FirstName = "Adrian", LastName = "Borowiec", Password = "pass" },
-            };
+            //var employees = new List<Employee>
+            //{
+            //    new Employee { FirstName = "Adrian", LastName = "Borowiec", Password = "pass" },
+            //};
 
-            employees.ForEach(x => ctx.Employees.AddOrUpdate(n => new { n.FirstName, n.LastName }, x));
-            ctx.SaveChanges();
+            //employees.ForEach(x => ctx.Employees.AddOrUpdate(n => new { n.FirstName, n.LastName }, x));
+            //ctx.SaveChanges();
         }
     }
 }

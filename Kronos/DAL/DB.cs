@@ -17,7 +17,6 @@ namespace Kronos.DAL
         {
         }
 
-        public DbSet<Employee> Employees { get; set; }
         public DbSet<RequisitionItem> RequisitionItems { get; set; }
         public DbSet<Debt> Debts { get; set; }
         public DbSet<DebtItem> DebtItems { get; set; }
@@ -33,7 +32,6 @@ namespace Kronos.DAL
             this.Configuration.LazyLoadingEnabled = true;
             //
 
-            modelBuilder.Configurations.Add(new EmployeeConfiguration());
             modelBuilder.Configurations.Add(new RequisitionItemConfiguration());
             modelBuilder.Configurations.Add(new DebtConfiguration());
             modelBuilder.Configurations.Add(new DebtItemConfiguration());
