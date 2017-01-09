@@ -29,19 +29,20 @@ namespace Kronos.Models
         /// <summary>
         /// Opis zadania
         /// </summary>
-        [Display(Name = "Opis zadania")]
+        [Display(Name = "Opis")]
         public string TaskDescription { get; set; }
 
         /// <summary>
         /// Data wykonania zadania
         /// </summary>
-        [Display(Name = "Data wykonania zadania")]
+        [Display(Name = "Data wykonania")]
+        [DataType(DataType.Date)]
         public DateTime? TaskDate { get; set; }
 
         /// <summary>
         /// Status zadania
         /// </summary>
-        [Display(Name = "Status zadania")]
+        [Display(Name = "Status")]
         public bool Status { get; set; }
     }
 }

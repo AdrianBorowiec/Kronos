@@ -90,30 +90,31 @@ namespace Kronos.Controllers
             return View(task);
         }
 
-        // GET: Task/Delete/5
+        [HttpPost]
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Task task = db.Tasks.Find(id);
+
             if (task == null)
             {
                 return HttpNotFound();
             }
-            return View(task);
-        }
 
-        // POST: Task/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Task task = db.Tasks.Find(id);
-            db.Tasks.Remove(task);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                db.Tasks.Remove(task);
+                db.SaveChanges();
+                return Content("true");
+            }
+            catch
+            {
+                return Content("false");
+            }
         }
 
         protected override void Dispose(bool disposing)

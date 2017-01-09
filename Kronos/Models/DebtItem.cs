@@ -52,6 +52,7 @@ namespace Kronos.Models
         /// Data utworzenia długu.
         /// </summary>
         [Display(Name = "Data utworzenia długu")]
+        [DataType(DataType.Date)]
         public DateTime? Date { get; set; }
 
         /// <summary>

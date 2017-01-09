@@ -1,13 +1,8 @@
 ﻿@model Kronos.Models.Task
 
-@{
-    ViewBag.Title = "Details";
-}
-
-<h2>Details</h2>
+<h1><b>Szczegóły</b></h1>
 
 <div>
-    <h4>Task</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -44,7 +39,8 @@
 
     </dl>
 </div>
+<hr />
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edytuj", "Edit", new { id = Model.Id }, new { @class = "btn btn-warning" })
+    @Html.ActionLink("Powrót do listy", "Index", null, new { @class = "btn btn-success" })
 </p>

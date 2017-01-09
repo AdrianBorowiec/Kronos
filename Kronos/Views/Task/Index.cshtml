@@ -1,13 +1,11 @@
 ﻿@model IEnumerable<Kronos.Models.Task>
 
-@{
-    ViewBag.Title = "Index";
-}
 
-<h2>Index</h2>
+<h1><b>Zadania</b></h1>
+
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Dodaj zadanie", "Create", null, new { @class = "btn btn-primary btn-margin" })
 </p>
 <table class="table">
     <tr>
@@ -41,9 +39,9 @@
             @Html.DisplayFor(modelItem => item.Status)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edytuj", "Edit", new { id = item.Id }, new { @class = "btn btn-warning" }) |
+            @Html.ActionLink("Szczegóły", "Details", new { id = item.Id }, new { @class = "btn btn-info" }) |
+            @Html.ActionLink("Usuń", "Delete", new { id = item.Id }, new { @class = "btn btn-danger delete-link" })
         </td>
     </tr>
 }

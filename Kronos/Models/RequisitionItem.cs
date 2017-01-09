@@ -36,6 +36,7 @@ namespace Kronos.Models
         /// Data utworzenia zapotrzebowania.
         /// </summary>
         [Display(Name = "Data utworzenia")]
+        [DataType(DataType.Date)]
         public DateTime? CreateDate { get; set; }
 
         /// <summary>
