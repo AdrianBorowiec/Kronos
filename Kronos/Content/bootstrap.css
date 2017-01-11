@@ -192,7 +192,11 @@ html input[disabled] {
 
 input[type="checkbox"],
 input[type="radio"] {
-  padding: 0;
+  -ms-transform: scale(1.8); 
+  -moz-transform: scale(1.8);
+  -webkit-transform: scale(1.8);
+  -o-transform: scale(1.8);
+  padding: 10px;
   box-sizing: border-box;
 }
 

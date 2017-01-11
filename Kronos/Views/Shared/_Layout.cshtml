@@ -6,12 +6,10 @@
     <title>Kronos</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/datetimepicker")
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/jqueryUI")
     @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/knockout")
 </head>
 <body>
     <div id="wrapper">
@@ -70,10 +68,8 @@
                     $.post(deleteLinkObj[0].href, function (data) {
                         if (data == 'true') {
                             deleteLinkObj.closest("tr").hide('fast');
-                            //(optional) Display Confirmation
                         }
                         else {
-                            //(optional) Display Error
                         }
                     });
                     $(this).dialog("close");

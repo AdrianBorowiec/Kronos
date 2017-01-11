@@ -125,5 +125,21 @@ namespace Kronos.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult ChangeStatus(int? id, bool status)
+        {
+            var task = db.Tasks.FirstOrDefault(x => x.Id == id);
+
+            if (task == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            db.Entry(task).State = EntityState.Modified;
+            task.Status = !status;
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
     }
 }

@@ -17,11 +17,6 @@ namespace Kronos
             bundles.Add(new ScriptBundle("~/bundles/jqueryUI").Include(
                         "~/Scripts/jquery-ui-{version}.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/datetimepicker").Include(
-                        "~/Scripts/bootstrap-datetimepicker.js",
-                        "~/Scripts/moment.js",
-                        "~/Scripts/moment-with-locales.js"));
-
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
@@ -34,9 +29,9 @@ namespace Kronos
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                      "~/Content/bootstrap-datetimepicker.css",
                       "~/Content/bootstrap/*.less",
-                      "~/Content/themes/base/*.css"));
+                      "~/Content/themes/base/*.css",
+                      "~/Content/font-awesome.css"));
         }
     }
 }
