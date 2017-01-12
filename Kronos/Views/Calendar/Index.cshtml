@@ -1,7 +1,34 @@
 ﻿@model Kronos.ViewModels.EventViewModel
+@using DayPilot.Web.Mvc
+@using DayPilot.Web.Mvc.Events.Calendar
 
-<div id="calendar"></div>
+<h1><b>Kalendarz pracowniczy</b></h1>
+<hr />
+<div class="space" style="text-align: center;">
+    <a class="btn btn-success" style="float:left" href="javascript:calendar.commandCallBack('previous');"><i class="fa fa-arrow-left"></i> Poprzedni tydzień</a>
+    <a class="btn btn-success" href="javascript:calendar.commandCallBack('today');">Dzisiaj</a>
+    <a class="btn btn-success" style="float:right" href="javascript:calendar.commandCallBack('next');">Następny tydzień <i class="fa fa-arrow-right"></i></a>
+</div>
 
-<script type="text/javascript">;
+<br />
+<div>
+@Html.DayPilotCalendar("calendar", new DayPilotCalendarConfig
+{
+    BackendUrl = Url.Content("~/Calendar/Backend"),
+    EventMoveHandling = EventMoveHandlingType.CallBack,
+    EventResizeHandling = EventResizeHandlingType.CallBack,
+    EventFontSize = "14pt",
+    TimeRangeSelectedHandling = TimeRangeSelectedHandlingType.JavaScript,
+    TimeRangeSelectedJavaScript = "calendar.timeRangeSelectedCallBack(start, end, null, { name: prompt('Nazwa nowego wydarzenia:', 'Nowe wydarzenie') });",
+    ViewType = DayPilot.Web.Mvc.Enums.Calendar.ViewType.Week,
+    HeightSpec = DayPilot.Web.Mvc.Enums.Calendar.HeightSpec.Full,
+    //HeaderDateFormat = "dddd d MMMM yyyy",
+})
+</div>
+
+<hr />
+<br />
+
+<script type="text/javascript">
 
 </script>
