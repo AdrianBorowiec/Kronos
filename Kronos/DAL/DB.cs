@@ -19,8 +19,9 @@ namespace Kronos.DAL
         
         public DbSet<Debt> Debts { get; set; }
         public DbSet<DebtItem> DebtItems { get; set; }
+        public DbSet<Event> Events { get; set; }
         public DbSet<Task> Tasks { get; set; }
-        public DbSet<RequisitionItem> RequisitionItems { get; set; }
+        public DbSet<RequisitionItem> RequisitionItems { get; set; }        
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -35,6 +36,7 @@ namespace Kronos.DAL
             
             modelBuilder.Configurations.Add(new DebtConfiguration());
             modelBuilder.Configurations.Add(new DebtItemConfiguration());
+            modelBuilder.Configurations.Add(new EventConfiguration());
             modelBuilder.Configurations.Add(new TaskConfiguration());
             modelBuilder.Configurations.Add(new RequisitionItemConfiguration());
         }

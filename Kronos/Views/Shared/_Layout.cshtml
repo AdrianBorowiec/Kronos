@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
     <title>Kronos</title>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/fullcalendar")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/jqueryUI")
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/fullcalendar")
 </head>
 <body>
     <div id="wrapper">
@@ -23,6 +25,9 @@
             <ul class="nav navbar-inverse">
                 <li style="background-color: #428bca">
                     @Html.ActionLink("Strona Główna", "Index", "Home", new { @style = "color: #333333;" })
+                </li>
+                <li>
+                    @Html.ActionLink("Kalendarz", "Index", "Calendar")
                 </li>
                 <li>
                     @Html.ActionLink("Lista dłużników", "Index", "Debt")
