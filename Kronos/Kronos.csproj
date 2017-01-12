@@ -215,10 +215,6 @@
     <Compile Include="Migrations\201701112042374_Wydarzenie.Designer.cs">
       <DependentUpon>201701112042374_Wydarzenie.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201701121201251_ZmianaPropertyModeluEvent.cs" />
-    <Compile Include="Migrations\201701121201251_ZmianaPropertyModeluEvent.Designer.cs">
-      <DependentUpon>201701121201251_ZmianaPropertyModeluEvent.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Debt.cs" />
     <Compile Include="Models\DebtItem.cs" />
@@ -248,8 +244,6 @@
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Content\fullcalendar.css" />
-    <Content Include="Content\materialFullCalendar.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -387,7 +381,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
-    <Content Include="Scripts\fullcalendar.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
@@ -401,12 +394,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\locale-all.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\moment-with-locales.js" />
-    <Content Include="Scripts\moment-with-locales.min.js" />
-    <Content Include="Scripts\moment.js" />
-    <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -467,9 +455,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701112042374_Wydarzenie.resx">
       <DependentUpon>201701112042374_Wydarzenie.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701121201251_ZmianaPropertyModeluEvent.resx">
-      <DependentUpon>201701121201251_ZmianaPropertyModeluEvent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ResourcesValidation.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

@@ -24,21 +24,12 @@ namespace Kronos
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/fullcalendar").Include(
-                      "~/Scripts/moment.js",
-                      "~/Scripts/fullcalendar.js",
-                      "~/Scripts/locale-all.js"));
-
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/bootstrap/*.less",
                       "~/Content/themes/base/*.css",
-                      "~/Content/font-awesome.css",
-                      "~/Content/fullcalendar.css"));
-
-            bundles.Add(new StyleBundle("~/Content/fullcalendar").Include(
-                      "~/Content/materialFullCalendar.css"));
+                      "~/Content/font-awesome.css"));
         }
     }
 }

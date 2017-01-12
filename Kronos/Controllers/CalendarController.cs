@@ -18,31 +18,6 @@ namespace Kronos.Controllers
             return View();
         }
 
-        //public JsonResult GetEvents()
-        //{
-        //    var events = db.Events.ToList();
-        //    var eventList = from e in events
-        //                    select new
-        //                    {
-        //                        id = e.Id,
-        //                        title = e.Name,
-        //                        description = e.Description,
-        //                        start = e.StartDate,
-        //                        end = e.EndDate
-        //                    };
-
-        //    var result = eventList.ToArray();
-        //    return Json(result, JsonRequestBehavior.AllowGet);
-        //}
-
-        public IQueryable GetEvents()
-        {
-            var events = db.Events;
-
-            return events;
-        }
-
-
         [HttpGet]
         public ActionResult Create()
         {
