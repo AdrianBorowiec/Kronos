@@ -6,12 +6,12 @@ using Kronos.DAL;
 using Kronos.Infrastructure;
 using Kronos.Models;
 using Kronos.Validators;
-using Kronos.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
+using System.Net;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
@@ -39,23 +39,24 @@ namespace Kronos.Controllers
             string end = Request.QueryString["end"];
             DateTime startDT;
             DateTime endDT;
+            Event model = new Event();
 
-            if (!DateTime.TryParse(start, out startDT))
+            if (start != "" && end != "")
             {
-                startDT = DateTime.ParseExact(start, "yyyy-MM-ddT24:mm:ssK", CultureInfo.InvariantCulture);
-                startDT = startDT.AddDays(1);
-            }
-            if (!DateTime.TryParse(end, out endDT))
-            {
-                endDT = DateTime.ParseExact(end, "yyyy-MM-ddT24:mm:ssK", CultureInfo.InvariantCulture);
-                endDT = endDT.AddDays(1);
-            }
+                if (!DateTime.TryParse(start, out startDT))
+                {
+                    startDT = DateTime.ParseExact(start, "yyyy-MM-ddT24:mm:ssK", CultureInfo.InvariantCulture);
+                    startDT = startDT.AddDays(1);
+                }
+                if (!DateTime.TryParse(end, out endDT))
+                {
+                    endDT = DateTime.ParseExact(end, "yyyy-MM-ddT24:mm:ssK", CultureInfo.InvariantCulture);
+                    endDT = endDT.AddDays(1);
+                }
 
-            var model = new Event
-            {
-                StartDate = startDT,
-                EndDate = endDT
-            };
+                model.StartDate = startDT;
+                model.EndDate = endDT;
+            }
 
             return View(model);
         }
@@ -77,6 +78,62 @@ namespace Kronos.Controllers
             return View();
         }
 
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Event @event = db.Events.Find(id);
+            if (@event == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(@event);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Event @event)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(@event).State = EntityState.Modified;
+                db.SaveChanges();
+                return JavaScript(SimpleJsonSerializer.Serialize("OK"));
+            }
+
+            return View(@event);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Event @event = db.Events.Find(id);
+
+            if (@event == null)
+            {
+                return HttpNotFound();
+            }
+
+            try
+            {
+                db.Events.Remove(@event);
+                db.SaveChanges();
+                return Content("true");
+            }
+            catch
+            {
+                return Content("false");
+            }
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -85,6 +142,10 @@ namespace Kronos.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+
+
 
         class DPC : DayPilotCalendar
         {

@@ -247,8 +247,6 @@
     <Compile Include="Validators\RequisitionItemValidator.cs" />
     <Compile Include="Controllers\RequisitionItemsController.cs" />
     <Compile Include="Validators\TaskValidator.cs" />
-    <Compile Include="ViewModels\EventCreateViewModel.cs" />
-    <Compile Include="ViewModels\EventViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -439,10 +437,12 @@
     <Content Include="Views\Task\Index.cshtml" />
     <Content Include="Views\Calendar\Index.cshtml" />
     <Content Include="Views\Calendar\Create.cshtml" />
+    <Content Include="Views\Calendar\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

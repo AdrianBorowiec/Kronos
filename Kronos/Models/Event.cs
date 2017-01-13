@@ -38,7 +38,7 @@ namespace Kronos.Models
         /// </summary>
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:g}", ApplyFormatInEditMode = true)]
-        [Display(Name = "Początek wydarzenia")]
+        [Display(Name = "Początek wydarzenia (dd.mm.yyyy hh.mm)")]
         public DateTime? StartDate { get; set; }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace Kronos.Models
         /// </summary>
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:g}", ApplyFormatInEditMode = true)]
-        [Display(Name = "Koniec wydarzenia")]
+        [Display(Name = "Koniec wydarzenia (dd.mm.yyyy hh.mm)")]
         public DateTime? EndDate { get; set; }
 
         /// <summary>

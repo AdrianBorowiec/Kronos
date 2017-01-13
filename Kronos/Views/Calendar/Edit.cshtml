@@ -12,13 +12,13 @@
 @Scripts.Render("~/bundles/jqueryval")
 @Scripts.Render("~/bundles/daypilot")
 
-<h1>&nbsp;Nowe wydarzenie</h1>
+<h1>&nbsp;Podgląd wydarzenia</h1>
 
-@using (Html.BeginForm("Create", "Calendar", FormMethod.Post, new { @id = "form" }))
+@using (Html.BeginForm("Edit", "Calendar", FormMethod.Post, new { @id = "form" }))
 {
     @Html.AntiForgeryToken()
 
-        <hr />
+    <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -37,7 +37,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })            
+            @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control", @type = "datetime" } })
                 @Html.ValidationMessageFor(model => model.StartDate, null, new { @class = "text-danger" })
@@ -55,11 +55,16 @@
         <hr />
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Dodaj" class="btn btn-success" />
-                <a href="javascript:close()" class="btn btn-danger">Anuluj</a>                
+                <input type="submit" value="Zapisz" class="btn btn-success" />
+                <a href="javascript:close()" class="btn btn-warning">Zamknij</a>
+                @Html.ActionLink("Usuń", "Delete", new { id = Model.Id }, new { @class = "btn btn-danger delete-link" })
             </div>
         </div>
 }
+
+<div id="delete-dialog" title="Potwierdzenie" style="display: none">
+    <p>Czy na pewno chcesz usunąć ten element?</p>
+</div>
 
 
 <script type="text/javascript">
@@ -77,4 +82,31 @@
             return false;
         });
 
+
+        var deleteLinkObj;
+
+        $('.delete-link').click(function () {
+            deleteLinkObj = $(this);
+            $('#delete-dialog').dialog('open');
+            return false;
+        });
+
+        $('#delete-dialog').dialog({
+            autoOpen: false, width: 400, resizable: false, modal: true,
+            buttons: {
+                "Kontynuuj": function () {
+                    $.post(deleteLinkObj[0].href, function (data) {
+                        if (data == 'true') {
+                            close("OK");
+                        }
+                        else {
+                        }
+                    });
+                    $(this).dialog("close");
+                },
+                "Anuluj": function () {
+                    $(this).dialog("close");
+                }
+            }
+        });
 </script>
