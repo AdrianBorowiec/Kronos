@@ -24,23 +24,28 @@ namespace Kronos.Models
         /// Nazwa wydarzenia
         /// </summary>
         [Display(Name = "Nazwa wydarzenia")]
-        public string Name { get; set; }
+        public string Title { get; set; }
 
         /// <summary>
         /// Opis
         /// </summary>
         [Display(Name = "Opis")]
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
         /// <summary>
         /// Początek wydarzenia
         /// </summary>
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:g}", ApplyFormatInEditMode = true)]
         [Display(Name = "Początek wydarzenia")]
         public DateTime? StartDate { get; set; }
 
         /// <summary>
         /// Koniec wydarzenia
         /// </summary>
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:g}", ApplyFormatInEditMode = true)]
         [Display(Name = "Koniec wydarzenia")]
         public DateTime? EndDate { get; set; }
 

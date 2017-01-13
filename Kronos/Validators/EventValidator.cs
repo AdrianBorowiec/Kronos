@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Kronos.Infrastructure;
 using Kronos.Models;
 using System;
 using System.Collections.Generic;
@@ -11,8 +12,8 @@ namespace Kronos.Validators
     {
         public EventValidator()
         {
-            RuleFor(x => x.Name).NotEmpty();
-            RuleFor(x => x.StartDate).NotEmpty();
+            RuleFor(x => x.Title).NotEmpty();
+            RuleFor(x => x.StartDate).NotEmpty().WithMessage("Tutaj FluentValidation!");
             RuleFor(x => x.EndDate).NotEmpty();
         }
     }

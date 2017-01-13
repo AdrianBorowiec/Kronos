@@ -186,6 +186,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Consts.cs" />
     <Compile Include="Infrastructure\CustomHtmlHelpers.cs" />
     <Compile Include="Infrastructure\DecimalModelBinder.cs" />
     <Compile Include="Infrastructure\ForeignKeyNamingConvention.cs" />
@@ -223,6 +224,10 @@
     <Compile Include="Migrations\201701112042374_Wydarzenie.Designer.cs">
       <DependentUpon>201701112042374_Wydarzenie.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701131337521_ZmianaPropertyEvent.cs" />
+    <Compile Include="Migrations\201701131337521_ZmianaPropertyEvent.Designer.cs">
+      <DependentUpon>201701131337521_ZmianaPropertyEvent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Debt.cs" />
     <Compile Include="Models\DebtItem.cs" />
@@ -242,6 +247,7 @@
     <Compile Include="Validators\RequisitionItemValidator.cs" />
     <Compile Include="Controllers\RequisitionItemsController.cs" />
     <Compile Include="Validators\TaskValidator.cs" />
+    <Compile Include="ViewModels\EventCreateViewModel.cs" />
     <Compile Include="ViewModels\EventViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -390,6 +396,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\daypilot-all.min.js" />
+    <Content Include="Scripts\daypilot-modal-2.7.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
@@ -431,6 +438,7 @@
     <Content Include="Views\Task\Edit.cshtml" />
     <Content Include="Views\Task\Index.cshtml" />
     <Content Include="Views\Calendar\Index.cshtml" />
+    <Content Include="Views\Calendar\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -464,6 +472,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701112042374_Wydarzenie.resx">
       <DependentUpon>201701112042374_Wydarzenie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701131337521_ZmianaPropertyEvent.resx">
+      <DependentUpon>201701131337521_ZmianaPropertyEvent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ResourcesValidation.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

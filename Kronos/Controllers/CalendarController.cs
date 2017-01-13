@@ -1,14 +1,18 @@
 ﻿using DayPilot.Web.Mvc;
 using DayPilot.Web.Mvc.Enums;
 using DayPilot.Web.Mvc.Events.Calendar;
+using DayPilot.Web.Mvc.Json;
 using Kronos.DAL;
 using Kronos.Infrastructure;
 using Kronos.Models;
+using Kronos.Validators;
 using Kronos.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
@@ -26,6 +30,51 @@ namespace Kronos.Controllers
         public ActionResult Backend()
         {
             return new DPC().CallBack(this);
+        }
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            string start = Request.QueryString["start"];
+            string end = Request.QueryString["end"];
+            DateTime startDT;
+            DateTime endDT;
+
+            if (!DateTime.TryParse(start, out startDT))
+            {
+                startDT = DateTime.ParseExact(start, "yyyy-MM-ddT24:mm:ssK", CultureInfo.InvariantCulture);
+                startDT = startDT.AddDays(1);
+            }
+            if (!DateTime.TryParse(end, out endDT))
+            {
+                endDT = DateTime.ParseExact(end, "yyyy-MM-ddT24:mm:ssK", CultureInfo.InvariantCulture);
+                endDT = endDT.AddDays(1);
+            }
+
+            var model = new Event
+            {
+                StartDate = startDT,
+                EndDate = endDT
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Create(Event @event)
+        {
+            var validator = new EventValidator();
+            var results = validator.Validate(@event);
+
+            if (results.IsValid)
+            {
+                db.Events.Add(@event);
+                db.SaveChanges();
+                //return RedirectToAction("Index");
+                return JavaScript(SimpleJsonSerializer.Serialize("OK"));
+            }
+
+            return View();
         }
 
         protected override void Dispose(bool disposing)
@@ -78,14 +127,14 @@ namespace Kronos.Controllers
 
             protected override void OnTimeRangeSelected(TimeRangeSelectedArgs e)
             {
-                var toBeCreated = new Event
+                var toBeCreated = new Models.Event
                 {
                     StartDate = e.Start,
                     EndDate = e.End,
-                    Name = (string)e.Data["name"]
+                    Title = (string)e.Data["name"]
                 };
 
-                if (toBeCreated.Name != null)
+                if (toBeCreated.Title != null)
                 {
                     db.Events.Add(toBeCreated);
                     db.SaveChanges();
@@ -110,6 +159,16 @@ namespace Kronos.Controllers
                         StartDate = DateTime.Today;
                         Update(CallBackUpdateType.Full);
                         break;
+                    case "refresh":
+                        Events = db.Events.AsEnumerable();
+
+                        DataIdField = "Id";
+                        DataTextField = "Title";
+                        DataStartField = "StartDate";
+                        DataEndField = "EndDate";
+
+                        Update();
+                        break;
                 }
             }
 
@@ -123,7 +182,7 @@ namespace Kronos.Controllers
                 Events = from ev in db.Events select ev;
 
                 DataIdField = "Id";
-                DataTextField = "Name";
+                DataTextField = "Title";
                 DataStartField = "StartDate";
                 DataEndField = "EndDate";
             }

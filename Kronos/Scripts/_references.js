@@ -2,6 +2,7 @@
 /// <reference path="ai.0.15.0-build58334.js" />
 /// <reference path="bootstrap.js" />
 /// <reference path="daypilot-all.min.js" />
+/// <reference path="daypilot-modal-2.7.js" />
 /// <reference path="jquery.validate.js" />
 /// <reference path="jquery.validate.unobtrusive.js" />
 /// <reference path="jquery-3.1.1.js" />

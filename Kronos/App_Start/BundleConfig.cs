@@ -25,7 +25,8 @@ namespace Kronos
                       "~/Scripts/respond.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/daypilot").Include(
-                        "~/Scripts/daypilot-all.min.js"));
+                        "~/Scripts/daypilot-all.min.js",
+                        "~/Scripts/daypilot-modal-2.7.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

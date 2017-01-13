@@ -14,7 +14,7 @@ namespace Kronos.Configurations
             ToTable("Events");
 
             Property(x => x.Id).IsRequired();
-            Property(x => x.Name).IsRequired();
+            Property(x => x.Title).IsRequired();
             Property(x => x.StartDate).IsRequired();
             Property(x => x.EndDate).IsRequired();
         }

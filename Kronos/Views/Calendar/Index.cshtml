@@ -7,6 +7,7 @@
 <div class="space" style="text-align: center;">
     <a class="btn btn-success" style="float:left" href="javascript:calendar.commandCallBack('previous');"><i class="fa fa-arrow-left"></i> Poprzedni tydzień</a>
     <a class="btn btn-success" href="javascript:calendar.commandCallBack('today');">Dzisiaj</a>
+    <a class="btn btn-info" href="javascript:calendar.commandCallBack('refresh');"><i class="fa fa-refresh"></i> Odśwież</a>
     <a class="btn btn-success" style="float:right" href="javascript:calendar.commandCallBack('next');">Następny tydzień <i class="fa fa-arrow-right"></i></a>
 </div>
 
@@ -17,12 +18,10 @@
     BackendUrl = Url.Content("~/Calendar/Backend"),
     EventMoveHandling = EventMoveHandlingType.CallBack,
     EventResizeHandling = EventResizeHandlingType.CallBack,
-    EventFontSize = "14pt",
     TimeRangeSelectedHandling = TimeRangeSelectedHandlingType.JavaScript,
-    TimeRangeSelectedJavaScript = "calendar.timeRangeSelectedCallBack(start, end, null, { name: prompt('Nazwa nowego wydarzenia:', 'Nowe wydarzenie') });",
+    TimeRangeSelectedJavaScript = "createEvent(start, end, resource);",
     ViewType = DayPilot.Web.Mvc.Enums.Calendar.ViewType.Week,
     HeightSpec = DayPilot.Web.Mvc.Enums.Calendar.HeightSpec.Full,
-    //HeaderDateFormat = "dddd d MMMM yyyy",
 })
 </div>
 
@@ -30,5 +29,19 @@
 <br />
 
 <script type="text/javascript">
-
+    function createEvent(start, end, resource) {
+        var modal = new DayPilot.Modal();
+        modal.top = 60;
+        modal.width = 350;
+        modal.opacity = 70;
+        modal.border = "10px solid #d0d0d0";
+        modal.closed = function () {
+            if (this.result == "OK") {
+                calendar.commandCallBack('refresh');
+            }
+            calendar.clearSelection();
+        };
+        modal.height = 250;
+        modal.showUrl("/Calendar/Create?start=" + start.toString() + "&end=" + end.toString());
+    }
 </script>
