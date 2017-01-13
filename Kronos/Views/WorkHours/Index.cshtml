@@ -1,4 +1,4 @@
-﻿@model Kronos.Models.Event
+﻿@model Kronos.Models.WorkHours
 @using DayPilot.Web.Mvc
 @using DayPilot.Web.Mvc.Events.Calendar
 
@@ -6,7 +6,7 @@
 <hr />
 <div class="space" style="text-align: center;">
     <a class="btn btn-success" style="float:left" href="javascript:calendar.commandCallBack('previous');"><i class="fa fa-arrow-left"></i> Poprzedni tydzień</a>
-    <a class="btn btn-success" href="javascript:calendar.commandCallBack('today');">Dzisiaj</a>
+    <a class="btn btn-success" href="javascript:calendar.commandCallBack('today');">Aktualny tydzień</a>
     <a class="btn btn-info" href="javascript:calendar.commandCallBack('refresh');"><i class="fa fa-refresh"></i> Odśwież</a>
     <a class="btn btn-success" style="float:right" href="javascript:calendar.commandCallBack('next');">Następny tydzień <i class="fa fa-arrow-right"></i></a>
     <a class="btn btn-primary" href="javascript:createEvent('','','');"><i class="fa fa-plus"></i> Dodaj</a>
@@ -16,7 +16,7 @@
 <div>
 @Html.DayPilotCalendar("calendar", new DayPilotCalendarConfig
 {
-    BackendUrl = Url.Content("~/Calendar/Backend"),
+    BackendUrl = Url.Content("~/WorkHours/Backend"),
     EventMoveHandling = EventMoveHandlingType.CallBack,
     EventResizeHandling = EventResizeHandlingType.CallBack,
     EventClickHandling = EventClickHandlingType.JavaScript,
@@ -25,6 +25,7 @@
     TimeRangeSelectedJavaScript = "createEvent(start, end, resource);",
     ViewType = DayPilot.Web.Mvc.Enums.Calendar.ViewType.Week,
     HeightSpec = DayPilot.Web.Mvc.Enums.Calendar.HeightSpec.Full,
+    TimeFormat = DayPilot.Web.Mvc.Enums.TimeFormat.Clock24Hours
 })
 </div>
 
@@ -49,7 +50,7 @@
             calendar.clearSelection();
         };
         modal.height = 250;
-        modal.showUrl("/Calendar/Create?start=" + start.toString() + "&end=" + end.toString());
+        modal.showUrl("/WorkHours/Create?start=" + start.toString() + "&end=" + end.toString());
     }
 
     function editEvent(e) {
@@ -65,6 +66,6 @@
             calendar.clearSelection();
         };
         modal.height = 250;
-        modal.showUrl("/Calendar/Edit?id=" + e.value());
+        modal.showUrl("/WorkHours/Edit?id=" + e.value());
     }
 </script>

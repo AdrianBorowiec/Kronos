@@ -174,12 +174,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Configurations\DebtConfiguration.cs" />
     <Compile Include="Configurations\DebtItemConfiguration.cs" />
-    <Compile Include="Configurations\EventConfiguration.cs" />
+    <Compile Include="Configurations\WorkHoursConfiguration.cs" />
     <Compile Include="Configurations\RequisitionItemConfiguration.cs" />
     <Compile Include="Configurations\TaskConfiguration.cs" />
     <Compile Include="Controllers\DebtController.cs" />
     <Compile Include="Controllers\DebtItemsController.cs" />
-    <Compile Include="Controllers\CalendarController.cs" />
+    <Compile Include="Controllers\WorkHoursController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="DAL\Db.cs" />
@@ -228,10 +228,14 @@
     <Compile Include="Migrations\201701131337521_ZmianaPropertyEvent.Designer.cs">
       <DependentUpon>201701131337521_ZmianaPropertyEvent.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701131541217_ZamianaEventNaWorkHours.cs" />
+    <Compile Include="Migrations\201701131541217_ZamianaEventNaWorkHours.Designer.cs">
+      <DependentUpon>201701131541217_ZamianaEventNaWorkHours.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Debt.cs" />
     <Compile Include="Models\DebtItem.cs" />
-    <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\WorkHours.cs" />
     <Compile Include="Models\RequisitionItem.cs" />
     <Compile Include="Models\Table.cs" />
     <Compile Include="Models\Task.cs" />
@@ -243,7 +247,7 @@
     </Compile>
     <Compile Include="Validators\DebtItemValidator.cs" />
     <Compile Include="Validators\DebtValidator.cs" />
-    <Compile Include="Validators\EventValidator.cs" />
+    <Compile Include="Validators\WorkHoursValidator.cs" />
     <Compile Include="Validators\RequisitionItemValidator.cs" />
     <Compile Include="Controllers\RequisitionItemsController.cs" />
     <Compile Include="Validators\TaskValidator.cs" />
@@ -435,9 +439,9 @@
     <Content Include="Views\Task\Create.cshtml" />
     <Content Include="Views\Task\Edit.cshtml" />
     <Content Include="Views\Task\Index.cshtml" />
-    <Content Include="Views\Calendar\Index.cshtml" />
-    <Content Include="Views\Calendar\Create.cshtml" />
-    <Content Include="Views\Calendar\Edit.cshtml" />
+    <Content Include="Views\WorkHours\Index.cshtml" />
+    <Content Include="Views\WorkHours\Create.cshtml" />
+    <Content Include="Views\WorkHours\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -475,6 +479,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701131337521_ZmianaPropertyEvent.resx">
       <DependentUpon>201701131337521_ZmianaPropertyEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701131541217_ZamianaEventNaWorkHours.resx">
+      <DependentUpon>201701131541217_ZamianaEventNaWorkHours.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ResourcesValidation.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

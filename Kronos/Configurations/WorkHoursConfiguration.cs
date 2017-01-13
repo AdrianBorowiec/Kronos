@@ -7,14 +7,14 @@ using System.Web;
 
 namespace Kronos.Configurations
 {
-    public class EventConfiguration : EntityTypeConfiguration<Event>
+    public class WorkHoursConfiguration : EntityTypeConfiguration<WorkHours>
     {
-        public EventConfiguration()
+        public WorkHoursConfiguration()
         {
-            ToTable("Events");
+            ToTable("WorkHours");
 
             Property(x => x.Id).IsRequired();
-            Property(x => x.Title).IsRequired();
+            Property(x => x.Employee).IsRequired();
             Property(x => x.StartDate).IsRequired();
             Property(x => x.EndDate).IsRequired();
         }

@@ -18,7 +18,7 @@ using System.Web.Mvc;
 
 namespace Kronos.Controllers
 {
-    public class CalendarController : Controller
+    public class WorkHoursController : Controller
     {
         private Db db = new Db();
 
@@ -39,7 +39,7 @@ namespace Kronos.Controllers
             string end = Request.QueryString["end"];
             DateTime startDT;
             DateTime endDT;
-            Event model = new Event();
+            WorkHours model = new WorkHours();
 
             if (start != "" && end != "")
             {
@@ -62,14 +62,14 @@ namespace Kronos.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Event @event)
+        public ActionResult Create(WorkHours workHours)
         {
-            var validator = new EventValidator();
-            var results = validator.Validate(@event);
+            var validator = new WorkHoursValidator();
+            var results = validator.Validate(workHours);
 
             if (results.IsValid)
             {
-                db.Events.Add(@event);
+                db.WorkHours.Add(workHours);
                 db.SaveChanges();
                 //return RedirectToAction("Index");
                 return JavaScript(SimpleJsonSerializer.Serialize("OK"));
@@ -84,27 +84,27 @@ namespace Kronos.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event @event = db.Events.Find(id);
-            if (@event == null)
+            WorkHours workHours = db.WorkHours.Find(id);
+            if (workHours == null)
             {
                 return HttpNotFound();
             }
 
-            return View(@event);
+            return View(workHours);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Event @event)
+        public ActionResult Edit(WorkHours workHours)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(@event).State = EntityState.Modified;
+                db.Entry(workHours).State = EntityState.Modified;
                 db.SaveChanges();
                 return JavaScript(SimpleJsonSerializer.Serialize("OK"));
             }
 
-            return View(@event);
+            return View(workHours);
         }
 
         [HttpPost]
@@ -115,16 +115,16 @@ namespace Kronos.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Event @event = db.Events.Find(id);
+            WorkHours workHours = db.WorkHours.Find(id);
 
-            if (@event == null)
+            if (workHours == null)
             {
                 return HttpNotFound();
             }
 
             try
             {
-                db.Events.Remove(@event);
+                db.WorkHours.Remove(workHours);
                 db.SaveChanges();
                 return Content("true");
             }
@@ -159,7 +159,7 @@ namespace Kronos.Controllers
             protected override void OnEventResize(EventResizeArgs e)
             {
                 var id = Convert.ToInt32(e.Id);
-                var toBeResized = db.Events.First(x => x.Id == id);
+                var toBeResized = db.WorkHours.First(x => x.Id == id);
 
                 db.Entry(toBeResized).State = EntityState.Modified;
 
@@ -174,7 +174,7 @@ namespace Kronos.Controllers
             protected override void OnEventMove(EventMoveArgs e)
             {
                 var id = Convert.ToInt32(e.Id);
-                var toBeResized = db.Events.First(x => x.Id == id);
+                var toBeResized = db.WorkHours.First(x => x.Id == id);
 
                 db.Entry(toBeResized).State = EntityState.Modified;
 
@@ -188,16 +188,16 @@ namespace Kronos.Controllers
 
             protected override void OnTimeRangeSelected(TimeRangeSelectedArgs e)
             {
-                var toBeCreated = new Models.Event
+                var toBeCreated = new Models.WorkHours
                 {
                     StartDate = e.Start,
                     EndDate = e.End,
-                    Title = (string)e.Data["name"]
+                    Employee = (string)e.Data["name"]
                 };
 
-                if (toBeCreated.Title != null)
+                if (toBeCreated.Employee != null)
                 {
-                    db.Events.Add(toBeCreated);
+                    db.WorkHours.Add(toBeCreated);
                     db.SaveChanges();
 
                     Update();
@@ -221,10 +221,10 @@ namespace Kronos.Controllers
                         Update(CallBackUpdateType.Full);
                         break;
                     case "refresh":
-                        Events = db.Events.AsEnumerable();
+                        Events = db.WorkHours.AsEnumerable();
 
                         DataIdField = "Id";
-                        DataTextField = "Title";
+                        DataTextField = "Employee";
                         DataStartField = "StartDate";
                         DataEndField = "EndDate";
 
@@ -240,10 +240,10 @@ namespace Kronos.Controllers
                     return;
                 }
 
-                Events = from ev in db.Events select ev;
+                Events = from ev in db.WorkHours select ev;
 
                 DataIdField = "Id";
-                DataTextField = "Title";
+                DataTextField = "Employee";
                 DataStartField = "StartDate";
                 DataEndField = "EndDate";
             }

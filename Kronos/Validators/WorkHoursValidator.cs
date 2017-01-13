@@ -8,12 +8,12 @@ using System.Web;
 
 namespace Kronos.Validators
 {
-    public class EventValidator : AbstractValidator<Event>
+    public class WorkHoursValidator : AbstractValidator<WorkHours>
     {
-        public EventValidator()
+        public WorkHoursValidator()
         {
-            RuleFor(x => x.Title).NotEmpty();
-            RuleFor(x => x.StartDate).NotEmpty().WithMessage("Tutaj FluentValidation!");
+            RuleFor(x => x.Employee).NotEmpty();
+            RuleFor(x => x.StartDate).NotEmpty();
             RuleFor(x => x.EndDate).NotEmpty();
         }
     }

@@ -9,7 +9,7 @@ Używane technologie:
 
 Napotkane problemy:
 - używanie znaku ',' w liczbach zmienno przecinkowych
-	
+- poprawne formatowanie daty, aby bylo osblugiwane przez MVC i FluentValidation
 	
 TODO:
 - DebtItem.Value - nie działa decimal - gdy wpisuje 12.50 wartosc przekazywana do kontrolera jest nullem, gdy wpisuje 12,50 wyskakuje blad walidacji (12,50 nie jest liczba)

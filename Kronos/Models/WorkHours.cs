@@ -9,10 +9,10 @@ using System.Web;
 namespace Kronos.Models
 {
     /// <summary>
-    /// Wydarzenie
+    /// Godziny pracy
     /// </summary>
-    [Validator(typeof(EventValidator))]
-    public class Event
+    [Validator(typeof(WorkHoursValidator))]
+    public class WorkHours
     {
         /// <summary>
         /// Identyfikator
@@ -23,8 +23,8 @@ namespace Kronos.Models
         /// <summary>
         /// Nazwa wydarzenia
         /// </summary>
-        [Display(Name = "Nazwa wydarzenia")]
-        public string Title { get; set; }
+        [Display(Name = "Pracownik")]
+        public string Employee { get; set; }
 
         /// <summary>
         /// Opis
@@ -38,7 +38,7 @@ namespace Kronos.Models
         /// </summary>
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:g}", ApplyFormatInEditMode = true)]
-        [Display(Name = "Początek wydarzenia (dd.mm.yyyy hh.mm)")]
+        [Display(Name = "Początek pracy (dd.mm.yyyy hh.mm)")]
         public DateTime? StartDate { get; set; }
 
         /// <summary>
@@ -46,20 +46,7 @@ namespace Kronos.Models
         /// </summary>
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:g}", ApplyFormatInEditMode = true)]
-        [Display(Name = "Koniec wydarzenia (dd.mm.yyyy hh.mm)")]
+        [Display(Name = "Koniec pracy (dd.mm.yyyy hh.mm)")]
         public DateTime? EndDate { get; set; }
-
-        /// <summary>
-        /// Rodzaj wydarzenia
-        /// </summary>
-        [Display(Name = "Rodzaj wydarzenia")]
-        public EventType? EventType { get; set; }
-    }
-
-    public enum EventType
-    {
-        Stol,
-        Sala,
-        Inne
     }
 }
