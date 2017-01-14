@@ -13,45 +13,47 @@
     @Scripts.Render("~/bundles/daypilot")
 </head>
 <body>
-    <div id="wrapper">
-        <!-- LOGO -->
-        <div class="logo col-lg-12">
-            @*<img src="~/Images/Shared/Logo.jpg" alt="logo" />*@
-        </div>
-        <!---->
-        <!-- NAVBAR -->
-        <div class="col-lg-2">
-            <ul class="nav navbar-inverse">
-                <li style="background-color: #428bca">
-                    @Html.ActionLink("Strona Główna", "Index", "Home", new { @style = "color: #333333;" })
-                </li>
-                <li>
-                    @Html.ActionLink("Kalendarz pracowniczy", "Index", "WorkHours")
-                </li>
-                <li>
-                    @Html.ActionLink("Lista dłużników", "Index", "Debt")
-                </li>
-                <li>
-                    @Html.ActionLink("Zadania", "Index", "Task")
-                </li>
-                <li>
-                    @Html.ActionLink("Lista zakupów", "Index", "RequisitionItems")
-                </li>
-            </ul>
-        </div>
-        <!---->
-        <!-- CONTENT PAGE -->
-        <div id="page-content-wrapper" class="col-lg-10">
-            <div class="container-fluid body-content">
-                @RenderBody()
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-inverse bg-inverse navbar-fixed-top borderlist-li">
+        <a class="navbar-brand">KRONOS</a>
+    </nav>
+    <div id="navbar-left" class="col-lg-2" style="padding-left: 0px;">
+        <ul class="nav navbar-inverse borderlist-ul navigation">
+            <li class="borderlist-li">
+                @Html.ActionLink("Przegląd ogólny --", "Index", "Home")
+            </li>
+            <li class="borderlist-li">
+                @Html.ActionLink("Terminarz --", "Index", "Calendar")
+            </li>
+            <li class="borderlist-li">
+                @Html.ActionLink("Grafik", "Index", "WorkHours")
+            </li>
+            <li class="borderlist-li">
+                @Html.ActionLink("Utarg --", "Index", "Earnings")
+            </li>
+            <li class="borderlist-li">
+                @Html.ActionLink("Długi", "Index", "Debt")
+            </li>
+            <li class="borderlist-li">
+                @Html.ActionLink("Zadania", "Index", "Task")
+            </li>
+            <li class="borderlist-li">
+                @Html.ActionLink("Zakupy", "Index", "RequisitionItems")
+            </li>
+        </ul>
+    </div>
+    <!---->
+    <!-- CONTENT PAGE -->
+    <div id="page-content-wrapper" class="col-lg-10">
+        <div class="container-fluid body-content">
+            @RenderBody()
 
-                <div id="delete-dialog" title="Potwierdzenie" style="display: none">
-                    <p>Czy na pewno chcesz usunąć ten element?</p>
-                </div>
+            <div id="delete-dialog" title="Potwierdzenie" style="display: none">
+                <p>Czy na pewno chcesz usunąć ten element?</p>
             </div>
         </div>
-        <!---->
     </div>
+    <!---->
 
     @RenderSection("Scripts", required: false)
 
@@ -85,6 +87,5 @@
         });
     </script>
 </body>
-
 
 </html>

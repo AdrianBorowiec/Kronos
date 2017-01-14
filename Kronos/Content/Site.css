@@ -26,3 +26,23 @@ textarea {
 .btn-margin {
   margin: 15px 15px 15px 0px !important;
 }
+
+.borderlist-li {
+    list-style-position:inside;
+    border: 2px solid white;
+}
+
+.borderlist-ul {
+    list-style-position:inside;
+    border: 2px solid black;
+}
+
+.borderlist-top {
+    list-style-position:inside;
+    border: 5px solid white;
+}
+
+.navigation {
+    position: fixed;
+    width: inherit;
+}
