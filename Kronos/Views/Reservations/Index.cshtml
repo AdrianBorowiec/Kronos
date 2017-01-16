@@ -1,0 +1,85 @@
+﻿@model Kronos.Models.Reservation
+@using DayPilot.Web.Mvc
+@using DayPilot.Web.Mvc.Events.Calendar
+
+<h1><b>Terminarz</b></h1>
+<hr />
+<div class="space" style="text-align: center;">
+    <a class="btn btn-success" style="float:left" href="javascript:calendar.commandCallBack('previous');"><i class="fa fa-arrow-left"></i> Poprzedni tydzień</a>
+    <a class="btn btn-success" href="javascript:calendar.commandCallBack('today');">Aktualny tydzień</a>
+    <a class="btn btn-info" href="javascript:calendar.commandCallBack('refresh');"><i class="fa fa-refresh"></i> Odśwież</a>
+    <a class="btn btn-success" style="float:right" href="javascript:calendar.commandCallBack('next');">Następny tydzień <i class="fa fa-arrow-right"></i></a>
+    <a class="btn btn-primary" href="javascript:createReservation('','','');"><i class="fa fa-plus"></i> Dodaj</a>
+</div>
+
+<br />
+<div style="float: left;">
+    <div id="navigator"></div>
+</div>
+<div style="margin-left: 200px;">
+@Html.DayPilotCalendar("calendar", new DayPilotCalendarConfig
+{
+    BackendUrl = Url.Content("~/Reservations/Backend"),
+    EventMoveHandling = EventMoveHandlingType.CallBack,
+    EventResizeHandling = EventResizeHandlingType.CallBack,
+    EventClickHandling = EventClickHandlingType.JavaScript,
+    EventClickJavaScript = "editReservation(e);",
+    TimeRangeSelectedHandling = TimeRangeSelectedHandlingType.JavaScript,
+    TimeRangeSelectedJavaScript = "createReservation(start, end, resource);",
+    ViewType = DayPilot.Web.Mvc.Enums.Calendar.ViewType.Day,
+    HeightSpec = DayPilot.Web.Mvc.Enums.Calendar.HeightSpec.Full,
+    TimeFormat = DayPilot.Web.Mvc.Enums.TimeFormat.Clock24Hours
+})
+</div>
+
+<hr />
+<br />
+
+<script type="text/javascript">
+
+    var nav = new DayPilot.Navigator("navigator");
+    nav.selectMode = "day";
+    nav.showMonths = 3;
+    nav.weekStarts = 1;
+    nav.cellHeight = 25;
+    nav.cellWidth = 25;
+    nav.onTimeRangeSelected = function (args) {
+        calendar.startDate = args.start;
+        calendar.update();
+    };
+
+    nav.init();
+
+
+    function createReservation(start, end, resource) {
+        var modal = new DayPilot.Modal();
+        modal.top = 60;
+        modal.width = 400;
+        modal.height = 730;
+        modal.opacity = 70;
+        modal.border = "10px solid #d0d0d0";
+        modal.closed = function () {
+            if (this.result == "OK") {
+                calendar.commandCallBack('refresh');
+            }
+            calendar.clearSelection();
+        };
+        modal.showUrl("/Reservations/Create?start=" + start.toString() + "&end=" + end.toString());
+    }
+
+    function editReservation(e) {
+        var modal = new DayPilot.Modal();
+        modal.top = 60;
+        modal.width = 400;
+        modal.height = 730;
+        modal.opacity = 70;
+        modal.border = "10px solid #d0d0d0";
+        modal.closed = function () {
+            if (this.result == "OK") {
+                calendar.commandCallBack('refresh');
+            }
+            calendar.clearSelection();
+        };
+        modal.showUrl("/Reservations/Edit?id=" + e.value());
+    }
+</script>

@@ -24,6 +24,7 @@ namespace Kronos.Models
         /// <summary>
         /// Nazwisko klienta
         /// </summary>
+        [Display(Name = "Klient")]
         public string ClientName { get; set; }
 
         /// <summary>
@@ -38,15 +39,15 @@ namespace Kronos.Models
         /// </summary>
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:g}", ApplyFormatInEditMode = true)]
-        [Display(Name = "Początek pracy (dd.mm.yyyy hh.mm)")]
+        [Display(Name = "Początek pracy (dd.mm.yyyy hh:mm)")]
         public DateTime? StartDate { get; set; }
 
         /// <summary>
-        /// Koniec rezerwacji
+        /// Koniec rezerwacji           // jakotako dziala 0:g
         /// </summary>
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:g}", ApplyFormatInEditMode = true)]
-        [Display(Name = "Koniec pracy (dd.mm.yyyy hh.mm)")]
+        [Display(Name = "Koniec pracy (dd.mm.yyyy hh:mm)")]
         public DateTime? EndDate { get; set; }
 
         /// <summary>
@@ -58,13 +59,14 @@ namespace Kronos.Models
         /// <summary>
         /// Rezerwowany stół
         /// </summary>
+        [Display(Name = "Rezerwowany stół")]
         public virtual Table Table { get; set; }
     }
 
     public enum ReseravtionType
     {
         [Description("Stół")]
-        Stol,
+        Stół,
         [Description("Sala")]
         Sala,
         [Description("Impreza")]

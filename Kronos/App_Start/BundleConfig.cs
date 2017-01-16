@@ -33,7 +33,8 @@ namespace Kronos
                       "~/Content/site.css",
                       "~/Content/bootstrap/*.less",
                       "~/Content/themes/base/*.css",
-                      "~/Content/font-awesome.css"));
+                      "~/Content/font-awesome.css",
+                      "~/Content/DayPilot/*.css"));
         }
     }
 }

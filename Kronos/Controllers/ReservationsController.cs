@@ -2,8 +2,8 @@
 using DayPilot.Web.Mvc.Enums;
 using DayPilot.Web.Mvc.Events.Calendar;
 using DayPilot.Web.Mvc.Json;
+using FluentValidation.Results;
 using Kronos.DAL;
-using Kronos.Infrastructure;
 using Kronos.Models;
 using Kronos.Validators;
 using System;
@@ -12,13 +12,12 @@ using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
 using System.Net;
-using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
 namespace Kronos.Controllers
 {
-    public class WorkHoursController : Controller
+    public class ReservationsController : Controller
     {
         private Db db = new Db();
 
@@ -39,7 +38,7 @@ namespace Kronos.Controllers
             string end = Request.QueryString["end"];
             DateTime startDT;
             DateTime endDT;
-            WorkHours model = new WorkHours();
+            Reservation model = new Reservation();
 
             if (start != "" && end != "")
             {
@@ -62,20 +61,27 @@ namespace Kronos.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(WorkHours workHours)
+        public ActionResult Create(Reservation Reservation)
         {
-            var validator = new WorkHoursValidator();
-            var results = validator.Validate(workHours);
+            var validator = new ReservationValidator();
+            var results = validator.Validate(Reservation);
 
             if (results.IsValid)
             {
-                db.WorkHours.Add(workHours);
+                db.Reservations.Add(Reservation);
                 db.SaveChanges();
                 
                 return JavaScript(SimpleJsonSerializer.Serialize("OK"));
             }
+            else
+            {
+                foreach (ValidationFailure failer in results.Errors)
+                {
+                    ModelState.AddModelError(failer.PropertyName, failer.ErrorMessage);
+                }
+            }
 
-            return View();
+            return View(Reservation);
         }
 
         public ActionResult Edit(int? id)
@@ -84,27 +90,27 @@ namespace Kronos.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            WorkHours workHours = db.WorkHours.Find(id);
-            if (workHours == null)
+            Reservation Reservation = db.Reservations.Find(id);
+            if (Reservation == null)
             {
                 return HttpNotFound();
             }
 
-            return View(workHours);
+            return View(Reservation);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(WorkHours workHours)
+        public ActionResult Edit(Reservation Reservation)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(workHours).State = EntityState.Modified;
+                db.Entry(Reservation).State = EntityState.Modified;
                 db.SaveChanges();
                 return JavaScript(SimpleJsonSerializer.Serialize("OK"));
             }
 
-            return View(workHours);
+            return View(Reservation);
         }
 
         [HttpPost]
@@ -115,16 +121,16 @@ namespace Kronos.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            WorkHours workHours = db.WorkHours.Find(id);
+            Reservation Reservation = db.Reservations.Find(id);
 
-            if (workHours == null)
+            if (Reservation == null)
             {
                 return HttpNotFound();
             }
 
             try
             {
-                db.WorkHours.Remove(workHours);
+                db.Reservations.Remove(Reservation);
                 db.SaveChanges();
                 return Content("true");
             }
@@ -146,7 +152,6 @@ namespace Kronos.Controllers
 
 
 
-
         class DPC : DayPilotCalendar
         {
             private Db db = new Db();
@@ -159,7 +164,7 @@ namespace Kronos.Controllers
             protected override void OnEventResize(EventResizeArgs e)
             {
                 var id = Convert.ToInt32(e.Id);
-                var toBeResized = db.WorkHours.First(x => x.Id == id);
+                var toBeResized = db.Reservations.First(x => x.Id == id);
 
                 db.Entry(toBeResized).State = EntityState.Modified;
 
@@ -174,7 +179,7 @@ namespace Kronos.Controllers
             protected override void OnEventMove(EventMoveArgs e)
             {
                 var id = Convert.ToInt32(e.Id);
-                var toBeResized = db.WorkHours.First(x => x.Id == id);
+                var toBeResized = db.Reservations.First(x => x.Id == id);
 
                 db.Entry(toBeResized).State = EntityState.Modified;
 
@@ -188,16 +193,16 @@ namespace Kronos.Controllers
 
             protected override void OnTimeRangeSelected(TimeRangeSelectedArgs e)
             {
-                var toBeCreated = new Models.WorkHours
+                var toBeCreated = new Models.Reservation
                 {
                     StartDate = e.Start,
                     EndDate = e.End,
-                    Employee = (string)e.Data["name"]
+                    ClientName = (string)e.Data["name"]
                 };
 
-                if (toBeCreated.Employee != null)
+                if (toBeCreated.ClientName != null)
                 {
-                    db.WorkHours.Add(toBeCreated);
+                    db.Reservations.Add(toBeCreated);
                     db.SaveChanges();
 
                     Update();
@@ -206,14 +211,14 @@ namespace Kronos.Controllers
 
             protected override void OnCommand(CommandArgs e)
             {
-                switch(e.Command)
+                switch (e.Command)
                 {
                     case "previous":
-                        StartDate = StartDate.AddDays(-7);
+                        StartDate = StartDate.AddDays(-1);
                         Update(CallBackUpdateType.Full);
                         break;
                     case "next":
-                        StartDate = StartDate.AddDays(7);
+                        StartDate = StartDate.AddDays(1);
                         Update(CallBackUpdateType.Full);
                         break;
                     case "today":
@@ -221,10 +226,10 @@ namespace Kronos.Controllers
                         Update(CallBackUpdateType.Full);
                         break;
                     case "refresh":
-                        Events = db.WorkHours.AsEnumerable();
+                        Events = db.Reservations.AsEnumerable();
 
                         DataIdField = "Id";
-                        DataTextField = "Employee";
+                        DataTextField = "ClientName";
                         DataStartField = "StartDate";
                         DataEndField = "EndDate";
 
@@ -240,10 +245,10 @@ namespace Kronos.Controllers
                     return;
                 }
 
-                Events = from ev in db.WorkHours select ev;
+                Events = from ev in db.Reservations select ev;
 
                 DataIdField = "Id";
-                DataTextField = "Employee";
+                DataTextField = "ClientName";
                 DataStartField = "StartDate";
                 DataEndField = "EndDate";
             }

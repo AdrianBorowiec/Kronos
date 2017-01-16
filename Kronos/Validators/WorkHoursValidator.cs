@@ -14,7 +14,7 @@ namespace Kronos.Validators
         {
             RuleFor(x => x.Employee).NotEmpty();
             RuleFor(x => x.StartDate).NotEmpty();
-            RuleFor(x => x.EndDate).NotEmpty();
+            RuleFor(x => x.EndDate).NotEmpty().GreaterThan(x => x.StartDate);
         }
     }
 }

@@ -1,0 +1,106 @@
+﻿@model Kronos.Models.Reservation
+
+@{
+    Layout = "";
+}
+
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/bundles/jqueryUI")
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/daypilot")
+
+<h1>&nbsp;Nowa rezerwacja</h1>
+
+@using (Html.BeginForm("Create", "Reservations", FormMethod.Post, new { @id = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.ClientName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ClientName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ClientName, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control", @type = "datetime" } })
+                @Html.ValidationMessageFor(model => model.StartDate, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control", @type = "datetime" } })
+                @Html.ValidationMessageFor(model => model.StartDate, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ReseravtionType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.ReseravtionType, "Wybierz typ rezerwacji", htmlAttributes: new { @class = "form-control", @id = "reservationType" })
+                @Html.ValidationMessageFor(model => model.ReseravtionType, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" id="tableNumber" style="display: none">
+            @Html.LabelFor(model => model.Table, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Table, Kronos.Infrastructure.SelectListItemsHelper.GetTablesList(), "Wybierz stół", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Table, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <hr />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Dodaj" class="btn btn-success" />
+                <a href="javascript:close()" class="btn btn-danger">Anuluj</a>
+            </div>
+        </div>
+}
+
+
+<script type="text/javascript">
+
+    function close(result) {
+        if (parent && parent.DayPilot && parent.DayPilot.ModalStatic) {
+            parent.DayPilot.ModalStatic.close(result);
+        }
+    }
+
+    $("#form").submit(function () {
+        var form = $("#form");
+        $.post(form.action, form.serialize(), function (result) {
+            close(eval(result));
+        });
+        return false;
+    });
+
+    $('#reservationType').change(function () {
+        if ($(this).val() != "0") {
+            $("#tableNumber").hide();
+        }
+        else {
+            $("#tableNumber").show();
+        }
+    });
+
+</script>

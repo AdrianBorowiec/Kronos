@@ -23,7 +23,7 @@
                 @Html.ActionLink("Przegląd ogólny --", "Index", "Home")
             </li>
             <li class="borderlist-li">
-                @Html.ActionLink("Terminarz --", "Index", "Calendar")
+                @Html.ActionLink("Terminarz", "Index", "Reservations")
             </li>
             <li class="borderlist-li">
                 @Html.ActionLink("Grafik", "Index", "WorkHours")
@@ -85,6 +85,15 @@
                 }
             }
         });
+
+        $.validator.addMethod(
+            "myDateTime",
+            function (value, element) {
+                return value.match(/^\d\d?\/\d\d?\/\d\d\d\d$/);
+            },
+            "Podaj datę w odpowiednim formacie - dd.mm.yyyy hh.mm."
+        );
+
     </script>
 </body>
 

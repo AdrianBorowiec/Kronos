@@ -181,6 +181,7 @@
     <Compile Include="Configurations\TaskConfiguration.cs" />
     <Compile Include="Controllers\DebtController.cs" />
     <Compile Include="Controllers\DebtItemsController.cs" />
+    <Compile Include="Controllers\ReservationsController.cs" />
     <Compile Include="Controllers\WorkHoursController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
@@ -193,6 +194,7 @@
     <Compile Include="Infrastructure\DecimalModelBinder.cs" />
     <Compile Include="Infrastructure\ForeignKeyNamingConvention.cs" />
     <Compile Include="Infrastructure\MyResourceProvider.cs" />
+    <Compile Include="Infrastructure\SelectListItemsHelper.cs" />
     <Compile Include="Infrastructure\UniqueValidator.cs" />
     <Compile Include="Migrations\201701061411154_ListaZakupow.cs" />
     <Compile Include="Migrations\201701061411154_ListaZakupow.Designer.cs">
@@ -238,6 +240,10 @@
     <Compile Include="Migrations\201701161549036_RezerwacjeStolow.Designer.cs">
       <DependentUpon>201701161549036_RezerwacjeStolow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701161755447_ZmianaPowiazaniaRezerwacjiZeStolami.cs" />
+    <Compile Include="Migrations\201701161755447_ZmianaPowiazaniaRezerwacjiZeStolami.Designer.cs">
+      <DependentUpon>201701161755447_ZmianaPowiazaniaRezerwacjiZeStolami.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Debt.cs" />
     <Compile Include="Models\DebtItem.cs" />
@@ -266,6 +272,16 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\DayPilot\calendar_g.css" />
+    <Content Include="Content\DayPilot\calendar_green.css" />
+    <Content Include="Content\DayPilot\calendar_traditional.css" />
+    <Content Include="Content\DayPilot\calendar_transparent.css" />
+    <Content Include="Content\DayPilot\calendar_white.css" />
+    <Content Include="Content\DayPilot\scheduler_8.css" />
+    <Content Include="Content\DayPilot\scheduler_green.css" />
+    <Content Include="Content\DayPilot\scheduler_traditional.css" />
+    <Content Include="Content\DayPilot\scheduler_transparent.css" />
+    <Content Include="Content\DayPilot\scheduler_white.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
@@ -451,6 +467,9 @@
     <Content Include="Views\WorkHours\Index.cshtml" />
     <Content Include="Views\WorkHours\Create.cshtml" />
     <Content Include="Views\WorkHours\Edit.cshtml" />
+    <Content Include="Views\Reservations\Index.cshtml" />
+    <Content Include="Views\Reservations\Create.cshtml" />
+    <Content Include="Views\Reservations\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -494,6 +513,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701161549036_RezerwacjeStolow.resx">
       <DependentUpon>201701161549036_RezerwacjeStolow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701161755447_ZmianaPowiazaniaRezerwacjiZeStolami.resx">
+      <DependentUpon>201701161755447_ZmianaPowiazaniaRezerwacjiZeStolami.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ResourcesValidation.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

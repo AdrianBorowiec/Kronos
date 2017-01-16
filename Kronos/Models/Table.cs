@@ -1,9 +1,11 @@
 ﻿using FluentValidation.Attributes;
+using Kronos.DAL;
 using Kronos.Validators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Kronos.Models
 {
@@ -27,5 +29,7 @@ namespace Kronos.Models
         /// Czy stół jest dostępny?
         /// </summary>
         public bool IsFree { get; set; }
+
+        public virtual ICollection<Reservation> Reservations { get; set; }
     }
 }
