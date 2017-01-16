@@ -2,6 +2,7 @@
 using Kronos.Validators;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -9,10 +10,10 @@ using System.Web;
 namespace Kronos.Models
 {
     /// <summary>
-    /// Godziny pracy
+    /// Rezerwacja
     /// </summary>
-    [Validator(typeof(WorkHoursValidator))]
-    public class WorkHours
+    [Validator(typeof(ReservationValidator))]
+    public class Reservation
     {
         /// <summary>
         /// Identyfikator
@@ -21,10 +22,9 @@ namespace Kronos.Models
         public int? Id { get; set; }
 
         /// <summary>
-        /// Pracownik
+        /// Nazwisko klienta
         /// </summary>
-        [Display(Name = "Pracownik")]
-        public string Employee { get; set; }
+        public string ClientName { get; set; }
 
         /// <summary>
         /// Opis
@@ -34,7 +34,7 @@ namespace Kronos.Models
         public string Description { get; set; }
 
         /// <summary>
-        /// Początek pracy
+        /// Początek rezerwacji
         /// </summary>
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:g}", ApplyFormatInEditMode = true)]
@@ -42,11 +42,34 @@ namespace Kronos.Models
         public DateTime? StartDate { get; set; }
 
         /// <summary>
-        /// Koniec pracy
+        /// Koniec rezerwacji
         /// </summary>
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:g}", ApplyFormatInEditMode = true)]
         [Display(Name = "Koniec pracy (dd.mm.yyyy hh.mm)")]
         public DateTime? EndDate { get; set; }
+
+        /// <summary>
+        /// Typ rezerwacji
+        /// </summary>
+        [Display(Name = "Typ rezerwacji")]
+        public ReseravtionType? ReseravtionType { get; set; }
+
+        /// <summary>
+        /// Rezerwowany stół
+        /// </summary>
+        public virtual Table Table { get; set; }
+    }
+
+    public enum ReseravtionType
+    {
+        [Description("Stół")]
+        Stol,
+        [Description("Sala")]
+        Sala,
+        [Description("Impreza")]
+        Impreza,
+        [Description("Inne")]
+        Inne
     }
 }

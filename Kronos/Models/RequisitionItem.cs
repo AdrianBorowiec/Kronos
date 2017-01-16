@@ -2,6 +2,7 @@
 using Kronos.Validators;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -48,10 +49,13 @@ namespace Kronos.Models
 
     public enum RequisitionType
     {
+        [Description("Napoje")]
         Napoje,
+        [Description("Alkohol")]
         Alkohol,
-        [Display(Name = "Produkty spożywcze")]
-        ProduktySpożywcze,
+        [Description("Produkty spożywcze")]
+        ProduktySpozywcze,
+        [Description("Inne")]
         Inne
     }
 }

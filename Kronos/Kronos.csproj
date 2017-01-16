@@ -174,6 +174,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Configurations\DebtConfiguration.cs" />
     <Compile Include="Configurations\DebtItemConfiguration.cs" />
+    <Compile Include="Configurations\ReservationConfiguration.cs" />
+    <Compile Include="Configurations\TableConfiguration.cs" />
     <Compile Include="Configurations\WorkHoursConfiguration.cs" />
     <Compile Include="Configurations\RequisitionItemConfiguration.cs" />
     <Compile Include="Configurations\TaskConfiguration.cs" />
@@ -232,9 +234,14 @@
     <Compile Include="Migrations\201701131541217_ZamianaEventNaWorkHours.Designer.cs">
       <DependentUpon>201701131541217_ZamianaEventNaWorkHours.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701161549036_RezerwacjeStolow.cs" />
+    <Compile Include="Migrations\201701161549036_RezerwacjeStolow.Designer.cs">
+      <DependentUpon>201701161549036_RezerwacjeStolow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Debt.cs" />
     <Compile Include="Models\DebtItem.cs" />
+    <Compile Include="Models\Reservation.cs" />
     <Compile Include="Models\WorkHours.cs" />
     <Compile Include="Models\RequisitionItem.cs" />
     <Compile Include="Models\Table.cs" />
@@ -247,6 +254,8 @@
     </Compile>
     <Compile Include="Validators\DebtItemValidator.cs" />
     <Compile Include="Validators\DebtValidator.cs" />
+    <Compile Include="Validators\ReservationValidator.cs" />
+    <Compile Include="Validators\TableValidator.cs" />
     <Compile Include="Validators\WorkHoursValidator.cs" />
     <Compile Include="Validators\RequisitionItemValidator.cs" />
     <Compile Include="Controllers\RequisitionItemsController.cs" />
@@ -482,6 +491,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701131541217_ZamianaEventNaWorkHours.resx">
       <DependentUpon>201701131541217_ZamianaEventNaWorkHours.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701161549036_RezerwacjeStolow.resx">
+      <DependentUpon>201701161549036_RezerwacjeStolow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ResourcesValidation.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

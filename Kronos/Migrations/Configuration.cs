@@ -37,6 +37,20 @@ namespace Kronos.Migrations
 
             //workHours.ForEach(x => ctx.WorkHours.AddOrUpdate(n => n.Id, x));
             //ctx.SaveChanges();
+
+            var tables = new List<Table>
+            {
+                new Table { TableNumber = 1, IsFree = true },
+                new Table { TableNumber = 2, IsFree = true },
+                new Table { TableNumber = 3, IsFree = true },
+                new Table { TableNumber = 4, IsFree = true },
+                new Table { TableNumber = 5, IsFree = true },
+                new Table { TableNumber = 6, IsFree = true },
+                new Table { TableNumber = 7, IsFree = true }
+            };
+
+            tables.ForEach(x => ctx.Tables.AddOrUpdate(n => n.Id, x));
+            ctx.SaveChanges();
         }
     }
 }
