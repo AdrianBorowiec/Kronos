@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -61,7 +62,20 @@ namespace Kronos.Models
         /// </summary>
         [Display(Name = "Rezerwowany stół")]
         public virtual Table Table { get; set; }
+
+        /// <summary>
+        /// Wybrany numer stołu
+        /// </summary>
+        public int? TableNumber { get; set; }
+
+        /// <summary>
+        /// Nazwa wydarzenia
+        /// </summary>
+        [NotMapped]
+        public string EventName { get; set; }
     }
+
+    
 
     public enum ReseravtionType
     {

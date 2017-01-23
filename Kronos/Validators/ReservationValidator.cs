@@ -15,7 +15,6 @@ namespace Kronos.Validators
             RuleFor(x => x.StartDate).NotEmpty();
             RuleFor(x => x.EndDate).NotEmpty().GreaterThan(x => x.StartDate);
             RuleFor(x => x.ReseravtionType).NotEmpty();
-            RuleFor(x => x.Table).NotEmpty().When(x => x.ReseravtionType == ReseravtionType.Stół);
         }
     }
 }

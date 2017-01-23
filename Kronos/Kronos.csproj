@@ -174,6 +174,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Configurations\DebtConfiguration.cs" />
     <Compile Include="Configurations\DebtItemConfiguration.cs" />
+    <Compile Include="Configurations\EarningConfiguration.cs" />
     <Compile Include="Configurations\ReservationConfiguration.cs" />
     <Compile Include="Configurations\TableConfiguration.cs" />
     <Compile Include="Configurations\WorkHoursConfiguration.cs" />
@@ -181,6 +182,7 @@
     <Compile Include="Configurations\TaskConfiguration.cs" />
     <Compile Include="Controllers\DebtController.cs" />
     <Compile Include="Controllers\DebtItemsController.cs" />
+    <Compile Include="Controllers\EarningsController.cs" />
     <Compile Include="Controllers\ReservationsController.cs" />
     <Compile Include="Controllers\WorkHoursController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -240,13 +242,18 @@
     <Compile Include="Migrations\201701161549036_RezerwacjeStolow.Designer.cs">
       <DependentUpon>201701161549036_RezerwacjeStolow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201701161755447_ZmianaPowiazaniaRezerwacjiZeStolami.cs" />
-    <Compile Include="Migrations\201701161755447_ZmianaPowiazaniaRezerwacjiZeStolami.Designer.cs">
-      <DependentUpon>201701161755447_ZmianaPowiazaniaRezerwacjiZeStolami.cs</DependentUpon>
+    <Compile Include="Migrations\201701210037435_DodanieUtargu.cs" />
+    <Compile Include="Migrations\201701210037435_DodanieUtargu.Designer.cs">
+      <DependentUpon>201701210037435_DodanieUtargu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701232340571_Rezerwacje.cs" />
+    <Compile Include="Migrations\201701232340571_Rezerwacje.Designer.cs">
+      <DependentUpon>201701232340571_Rezerwacje.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Debt.cs" />
     <Compile Include="Models\DebtItem.cs" />
+    <Compile Include="Models\Earning.cs" />
     <Compile Include="Models\Reservation.cs" />
     <Compile Include="Models\WorkHours.cs" />
     <Compile Include="Models\RequisitionItem.cs" />
@@ -260,6 +267,7 @@
     </Compile>
     <Compile Include="Validators\DebtItemValidator.cs" />
     <Compile Include="Validators\DebtValidator.cs" />
+    <Compile Include="Validators\EarningValidator.cs" />
     <Compile Include="Validators\ReservationValidator.cs" />
     <Compile Include="Validators\TableValidator.cs" />
     <Compile Include="Validators\WorkHoursValidator.cs" />
@@ -470,6 +478,9 @@
     <Content Include="Views\Reservations\Index.cshtml" />
     <Content Include="Views\Reservations\Create.cshtml" />
     <Content Include="Views\Reservations\Edit.cshtml" />
+    <Content Include="Views\Earnings\Create.cshtml" />
+    <Content Include="Views\Earnings\Edit.cshtml" />
+    <Content Include="Views\Earnings\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -514,8 +525,11 @@
     <EmbeddedResource Include="Migrations\201701161549036_RezerwacjeStolow.resx">
       <DependentUpon>201701161549036_RezerwacjeStolow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701161755447_ZmianaPowiazaniaRezerwacjiZeStolami.resx">
-      <DependentUpon>201701161755447_ZmianaPowiazaniaRezerwacjiZeStolami.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201701210037435_DodanieUtargu.resx">
+      <DependentUpon>201701210037435_DodanieUtargu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701232340571_Rezerwacje.resx">
+      <DependentUpon>201701232340571_Rezerwacje.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ResourcesValidation.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

@@ -66,6 +66,11 @@ namespace Kronos.Controllers
             var validator = new ReservationValidator();
             var results = validator.Validate(Reservation);
 
+            if (Reservation.ReseravtionType == ReseravtionType.Stół)
+            {
+                Reservation.Table = db.Tables.FirstOrDefault(x => x.TableNumber == Reservation.TableNumber);
+            }
+
             if (results.IsValid)
             {
                 db.Reservations.Add(Reservation);
@@ -193,11 +198,11 @@ namespace Kronos.Controllers
 
             protected override void OnTimeRangeSelected(TimeRangeSelectedArgs e)
             {
-                var toBeCreated = new Models.Reservation
+                var toBeCreated = new Reservation
                 {
                     StartDate = e.Start,
                     EndDate = e.End,
-                    ClientName = (string)e.Data["name"]
+                    ClientName = (string)e.Data["name"],
                 };
 
                 if (toBeCreated.ClientName != null)
@@ -228,8 +233,23 @@ namespace Kronos.Controllers
                     case "refresh":
                         Events = db.Reservations.AsEnumerable();
 
+                        foreach(Reservation item in Events)
+                        {
+                            if (item.ClientName != null && item.StartDate != null && EndDate != null && item.ReseravtionType != null)
+                            {
+                                if (item.ReseravtionType == Kronos.Models.ReseravtionType.Stół)
+                                {
+                                    item.EventName = String.Format("{0} (Stół nr {1}) {2:00}:{3:00} - {4:00}:{5:00}", item.ClientName, item.TableNumber, item.StartDate.Value.Hour, item.StartDate.Value.Minute, item.EndDate.Value.Hour, item.EndDate.Value.Minute);
+                                }
+                                else
+                                {
+                                    item.EventName = String.Format("{0} ({1}) {2:00}:{3:00} - {4:00}:{5:00}", item.ClientName, item.ReseravtionType.Value, item.StartDate.Value.Hour, item.StartDate.Value.Minute, item.EndDate.Value.Hour, item.EndDate.Value.Minute);
+                                }
+                            }
+                        }
+
                         DataIdField = "Id";
-                        DataTextField = "ClientName";
+                        DataTextField = "EventName";
                         DataStartField = "StartDate";
                         DataEndField = "EndDate";
 
@@ -247,8 +267,23 @@ namespace Kronos.Controllers
 
                 Events = from ev in db.Reservations select ev;
 
+                foreach (Reservation item in Events)
+                {
+                    if (item.ClientName != null && item.StartDate != null && EndDate != null && item.ReseravtionType != null)
+                    {
+                        if (item.ReseravtionType == Kronos.Models.ReseravtionType.Stół)
+                        {
+                            item.EventName = String.Format("{0} (Stół nr {1}) {2:00}:{3:00} - {4:00}:{5:00}", item.ClientName, item.TableNumber, item.StartDate.Value.Hour, item.StartDate.Value.Minute, item.EndDate.Value.Hour, item.EndDate.Value.Minute);
+                        }
+                        else
+                        {
+                            item.EventName = String.Format("{0} ({1}) {2:00}:{3:00} - {4:00}:{5:00}", item.ClientName, item.ReseravtionType.Value, item.StartDate.Value.Hour, item.StartDate.Value.Minute, item.EndDate.Value.Hour, item.EndDate.Value.Minute);
+                        }
+                    }
+                }
+
                 DataIdField = "Id";
-                DataTextField = "ClientName";
+                DataTextField = "EventName";
                 DataStartField = "StartDate";
                 DataEndField = "EndDate";
             }

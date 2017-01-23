@@ -7,13 +7,13 @@ namespace Kronos.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class ZmianaPowiazaniaRezerwacjiZeStolami : IMigrationMetadata
+    public sealed partial class DodanieUtargu : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ZmianaPowiazaniaRezerwacjiZeStolami));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(DodanieUtargu));
         
         string IMigrationMetadata.Id
         {
-            get { return "201701161755447_ZmianaPowiazaniaRezerwacjiZeStolami"; }
+            get { return "201701210037435_DodanieUtargu"; }
         }
         
         string IMigrationMetadata.Source

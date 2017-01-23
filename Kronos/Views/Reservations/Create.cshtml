@@ -61,10 +61,10 @@
         </div>
 
         <div class="form-group" id="tableNumber" style="display: none">
-            @Html.LabelFor(model => model.Table, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.TableNumber, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Table, Kronos.Infrastructure.SelectListItemsHelper.GetTablesList(), "Wybierz stół", htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Table, null, new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.TableNumber, Kronos.Infrastructure.SelectListItemsHelper.GetTablesList(), "Wybierz stół", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TableNumber, null, new { @class = "text-danger" })
             </div>
         </div>
 
