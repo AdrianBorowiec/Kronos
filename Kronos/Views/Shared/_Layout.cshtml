@@ -20,7 +20,7 @@
     <div id="navbar-left" class="col-lg-2" style="padding-left: 0px;">
         <ul class="nav navbar-inverse borderlist-ul navigation">
             <li class="borderlist-li">
-                @Html.ActionLink("Przegląd ogólny --", "Index", "Home")
+                @Html.ActionLink("Przegląd ogólny", "Index", "Overview")
             </li>
             <li class="borderlist-li">
                 @Html.ActionLink("Terminarz", "Index", "Reservations")
@@ -86,13 +86,7 @@
             }
         });
 
-        $.validator.addMethod(
-            "myDateTime",
-            function (value, element) {
-                return value.match(/^\d\d?\/\d\d?\/\d\d\d\d$/);
-            },
-            "Podaj datę w odpowiednim formacie - dd.mm.yyyy hh.mm."
-        );
+        $('.dateField').removeAttr("data-val-date");
 
     </script>
 </body>

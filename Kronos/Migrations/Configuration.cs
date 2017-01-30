@@ -45,8 +45,7 @@ namespace Kronos.Migrations
             //    new Table { TableNumber = 3, IsFree = true },
             //    new Table { TableNumber = 4, IsFree = true },
             //    new Table { TableNumber = 5, IsFree = true },
-            //    new Table { TableNumber = 6, IsFree = true },
-            //    new Table { TableNumber = 7, IsFree = true }
+            //    new Table { TableNumber = 6, IsFree = true }
             //};
 
             //tables.ForEach(x => ctx.Tables.AddOrUpdate(n => n.Id, x));

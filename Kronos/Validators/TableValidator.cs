@@ -12,7 +12,6 @@ namespace Kronos.Validators
         public TableValidator()
         {
             RuleFor(x => x.TableNumber).NotEmpty();
-            RuleFor(x => x.IsFree).NotEmpty();
         }
     }
 }

@@ -15,13 +15,11 @@ namespace Kronos.Controllers
     {
         private Db db = new Db();
 
-        // GET: Task
         public ActionResult Index()
         {
             return View(db.Tasks.ToList());
         }
 
-        // GET: Task/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,15 +34,11 @@ namespace Kronos.Controllers
             return View(task);
         }
 
-        // GET: Task/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Task/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Employee,TaskDescription,TaskDate,Status")] Task task)
@@ -59,7 +53,6 @@ namespace Kronos.Controllers
             return View(task);
         }
 
-        // GET: Task/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -74,9 +67,6 @@ namespace Kronos.Controllers
             return View(task);
         }
 
-        // POST: Task/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Employee,TaskDescription,TaskDate,Status")] Task task)

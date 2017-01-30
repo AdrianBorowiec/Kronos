@@ -13,7 +13,7 @@ using System.Threading;
 
 namespace Kronos
 {
-    public class MvcApplication : System.Web.HttpApplication
+    public class MvcApplication : HttpApplication
     {
         protected void Application_Start()
         {

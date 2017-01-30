@@ -1,30 +1,20 @@
-﻿@model Kronos.Models.WorkHours
+﻿@model Kronos.Models.Reservation
 
-@{
-    Layout = "";
-}
 
-@Styles.Render("~/Content/css")
-@Scripts.Render("~/bundles/modernizr")
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")
-@Scripts.Render("~/bundles/jqueryUI")
-@Scripts.Render("~/bundles/jqueryval")
-@Scripts.Render("~/bundles/daypilot")
+<h1><b>Dodaj rezerwację dla stołu nr @Model.Table.TableNumber</b></h1>
+<hr />
 
-<h1>&nbsp;Nowy wpis</h1>
-
-@using (Html.BeginForm("Create", "WorkHours", FormMethod.Post, new { @id = "form" }))
+@using (Html.BeginForm("AddReservation", "Overview", new {  }, FormMethod.Post, null))
 {
     @Html.AntiForgeryToken()
-
+    <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.Employee, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ClientName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Employee, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Employee, null, new { @class = "text-danger" })
+                @Html.EditorFor(model => model.ClientName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ClientName, null, new { @class = "text-danger" })
             </div>
         </div>
 
@@ -37,7 +27,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })            
+            @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control dateField", @type = "datetime" } })
                 @Html.ValidationMessageFor(model => model.StartDate, null, new { @class = "text-danger" })
@@ -52,29 +42,13 @@
             </div>
         </div>
 
+        @Html.HiddenFor(model => model.TableNumber)
+
         <hr />
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Dodaj" class="btn btn-success" />
-                <a href="javascript:close()" class="btn btn-danger">Anuluj</a>                
+                <input type="submit" value="Dodaj" class="btn btn-default" />
             </div>
         </div>
+    </div>
 }
-
-
-<script type="text/javascript">
-        function close(result) {
-            if (parent && parent.DayPilot && parent.DayPilot.ModalStatic) {
-                parent.DayPilot.ModalStatic.close(result);
-           }
-        }
-
-        $("#form").submit(function () {
-            var form = $("#form");
-            $.post(form.action, form.serialize(), function (result) {
-                close(eval(result));
-            });
-            return false;
-        });
-
-</script>

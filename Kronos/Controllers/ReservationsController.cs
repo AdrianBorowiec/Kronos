@@ -172,13 +172,17 @@ namespace Kronos.Controllers
                 var toBeResized = db.Reservations.First(x => x.Id == id);
 
                 db.Entry(toBeResized).State = EntityState.Modified;
-
                 toBeResized.StartDate = e.NewStart;
                 toBeResized.EndDate = e.NewEnd;
 
-                db.SaveChanges();
+                var validator = new ReservationValidator();
+                var results = validator.Validate(toBeResized);
 
-                Update();
+                if (results.IsValid)
+                {
+                    db.SaveChanges();
+                    Update();
+                }
             }
 
             protected override void OnEventMove(EventMoveArgs e)
@@ -187,13 +191,17 @@ namespace Kronos.Controllers
                 var toBeResized = db.Reservations.First(x => x.Id == id);
 
                 db.Entry(toBeResized).State = EntityState.Modified;
-
                 toBeResized.StartDate = e.NewStart;
                 toBeResized.EndDate = e.NewEnd;
 
-                db.SaveChanges();
+                var validator = new ReservationValidator();
+                var results = validator.Validate(toBeResized);
 
-                Update();
+                if (results.IsValid)
+                {
+                    db.SaveChanges();
+                    Update();
+                }
             }
 
             protected override void OnTimeRangeSelected(TimeRangeSelectedArgs e)

@@ -61,7 +61,6 @@ namespace Kronos.Controllers
                 return RedirectToAction("Index", new { debtId = debtId });
             }
 
-            //return View(debtItem);
             return RedirectToAction("Create", new { debtId = debtId });
         }
 

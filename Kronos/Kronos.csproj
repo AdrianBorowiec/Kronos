@@ -104,12 +104,24 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -183,6 +195,7 @@
     <Compile Include="Controllers\DebtController.cs" />
     <Compile Include="Controllers\DebtItemsController.cs" />
     <Compile Include="Controllers\EarningsController.cs" />
+    <Compile Include="Controllers\OverviewController.cs" />
     <Compile Include="Controllers\ReservationsController.cs" />
     <Compile Include="Controllers\WorkHoursController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -191,7 +204,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\Consts.cs" />
     <Compile Include="Infrastructure\CustomHtmlHelpers.cs" />
     <Compile Include="Infrastructure\DecimalModelBinder.cs" />
     <Compile Include="Infrastructure\ForeignKeyNamingConvention.cs" />
@@ -250,6 +262,10 @@
     <Compile Include="Migrations\201701232340571_Rezerwacje.Designer.cs">
       <DependentUpon>201701232340571_Rezerwacje.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701301802467_PoprawkaStolu.cs" />
+    <Compile Include="Migrations\201701301802467_PoprawkaStolu.Designer.cs">
+      <DependentUpon>201701301802467_PoprawkaStolu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Debt.cs" />
     <Compile Include="Models\DebtItem.cs" />
@@ -274,6 +290,8 @@
     <Compile Include="Validators\RequisitionItemValidator.cs" />
     <Compile Include="Controllers\RequisitionItemsController.cs" />
     <Compile Include="Validators\TaskValidator.cs" />
+    <Compile Include="ViewModels\OverviewDetailsViewModel.cs" />
+    <Compile Include="ViewModels\OverviewViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -339,6 +357,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\FreeTable.png" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -460,7 +479,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\RequisitionItems\Create.cshtml" />
     <Content Include="Views\RequisitionItems\Edit.cshtml" />
     <Content Include="Views\RequisitionItems\Index.cshtml" />
@@ -481,11 +499,12 @@
     <Content Include="Views\Earnings\Create.cshtml" />
     <Content Include="Views\Earnings\Edit.cshtml" />
     <Content Include="Views\Earnings\Index.cshtml" />
+    <Content Include="Views\Overview\Index.cshtml" />
+    <Content Include="Views\Overview\Details.cshtml" />
+    <Content Include="Views\Overview\AddReservation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -530,6 +549,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701232340571_Rezerwacje.resx">
       <DependentUpon>201701232340571_Rezerwacje.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701301802467_PoprawkaStolu.resx">
+      <DependentUpon>201701301802467_PoprawkaStolu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ResourcesValidation.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

@@ -31,11 +31,9 @@ namespace Kronos.DAL
         {
             base.OnModelCreating(modelBuilder);
 
-            // Ustawienia ogólne.
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.Conventions.AddBefore<ForeignKeyIndexConvention>(new ForeignKeyNamingConvention());
             this.Configuration.LazyLoadingEnabled = true;
-            //
             
             modelBuilder.Configurations.Add(new DebtConfiguration());
             modelBuilder.Configurations.Add(new DebtItemConfiguration());

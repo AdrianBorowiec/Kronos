@@ -31,7 +31,7 @@ namespace Kronos.Models
         /// <summary>
         /// Opis
         /// </summary>
-        [Display(Name = "Opis")]
+        [Display(Name = "Dodatkowy opis")]
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
@@ -40,15 +40,15 @@ namespace Kronos.Models
         /// </summary>
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:g}", ApplyFormatInEditMode = true)]
-        [Display(Name = "Początek pracy (dd.mm.yyyy hh:mm)")]
+        [Display(Name = "Początek rezerwacji (dd.mm.yyyy hh:mm)")]
         public DateTime? StartDate { get; set; }
 
         /// <summary>
-        /// Koniec rezerwacji           // jakotako dziala 0:g
+        /// Koniec rezerwacji
         /// </summary>
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:g}", ApplyFormatInEditMode = true)]
-        [Display(Name = "Koniec pracy (dd.mm.yyyy hh:mm)")]
+        [Display(Name = "Koniec rezerwacji (dd.mm.yyyy hh:mm)")]
         public DateTime? EndDate { get; set; }
 
         /// <summary>

@@ -1,0 +1,81 @@
+﻿@model Kronos.ViewModels.OverviewDetailsViewModel
+
+<h1><b>Szczegóły stołu nr @Model.Table.TableNumber</b></h1>
+<hr />
+
+@Html.ActionLink("Dodaj rezerwacje", "AddReservation", new { tableId = @Model.Table.TableNumber }, new { @class = "btn btn-primary btn-margin addReservation" })
+
+<br />
+<h2>Aktualnie na stole:</h2>
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CurrentReservation.ClientName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CurrentReservation.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CurrentReservation.EndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CurrentReservation.Description)
+        </th>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(model => model.CurrentReservation.ClientName)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.CurrentReservation.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.CurrentReservation.EndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.CurrentReservation.Description)
+        </td>
+    </tr>
+</table>
+
+<br />
+<h2>Nadchodzące rezerwacje:</h2>
+<br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CurrentReservation.ClientName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CurrentReservation.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CurrentReservation.EndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CurrentReservation.Description)
+        </th>
+    </tr>
+
+    @foreach (var item in Model.Reservations)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClientName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+        </tr>
+    }
+</table>
+
+<div id="addReservation"></div>
